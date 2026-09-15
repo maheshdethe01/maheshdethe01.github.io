@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mahesh Dethe — Data Scientist & AI/ML Engineer</title>
-  <meta name="description" content="Portfolio of Mahesh Dethe: Data Analyst, Data Scientist, and AI/ML Engineer with freelance consulting experience.">
+  <meta name="description" content="Portfolio of Mahesh Dethe: Data Analyst, Data Scientist, and AI/ML Engineer with clean desktop and mobile viewport preview modes.">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -35,389 +35,440 @@
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 
   <style>
-    ::selection {
-      background: #111214;
-      color: #FDFCF9;
+    ::selection { background: #111214; color: #FDFCF9; }
+    .dark ::selection { background: #EDEBE2; color: #111214; }
+
+    /* Clean Mobile Viewport (No outer curved border or device bezel) */
+    .mobile-mode-active {
+      max-width: 410px !important;
+      margin: 0 auto !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      overflow-x: hidden !important;
+      background: #FDFCF9;
     }
-    .dark ::selection {
-      background: #EDEBE2;
-      color: #111214;
+    .dark .mobile-mode-active {
+      background: #0C0D0E;
     }
   </style>
 </head>
 
-<body class="bg-paper-50 dark:bg-paper-950 text-neutral-800 dark:text-neutral-200 font-sans antialiased transition-colors duration-200">
+<body class="bg-neutral-100 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200 font-sans antialiased transition-colors duration-200 min-h-screen flex flex-col">
 
-  <!-- Header / Navigation -->
-  <header class="sticky top-0 z-40 bg-paper-50/90 dark:bg-paper-950/90 backdrop-blur-md border-b border-neutral-200/70 dark:border-neutral-800/80">
-    <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="font-serif text-xl tracking-tight hover:opacity-75 transition-opacity font-medium">
-        Mahesh Dethe
-      </a>
+  <!-- ================= TOP VIEWPORT SWITCHER CONTROLS ================= -->
+  <aside aria-label="Device viewport switcher" class="sticky top-0 z-50 bg-white/95 dark:bg-neutral-900/95 backdrop-blur border-b border-neutral-300 dark:border-neutral-800 py-2.5 px-4 shadow-sm">
+    <div class="max-w-4xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-mono font-medium text-neutral-500 uppercase tracking-wider hidden sm:inline">Viewport:</span>
+        <div class="inline-flex p-1 bg-neutral-100 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700">
+          <button id="btn-desktop" class="flex items-center gap-1.5 px-3 py-1 text-xs font-mono font-medium rounded-md bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white shadow-sm transition-all">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            Desktop
+          </button>
+          <button id="btn-mobile" class="flex items-center gap-1.5 px-3 py-1 text-xs font-mono font-medium rounded-md text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            Mobile (390px)
+          </button>
+        </div>
+      </div>
 
-      <nav class="flex items-center space-x-6 text-sm">
-        <a href="#about" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">About</a>
-        <a href="#experience" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">Experience</a>
-        <a href="#projects" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">Projects</a>
-        <a href="#stack" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">Stack</a>
-        <a href="#contact" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">Contact</a>
-
+      <div class="flex items-center gap-3">
+        <span id="viewport-label" class="text-xs font-mono text-neutral-500 hidden md:inline">Current: Full Desktop Width</span>
         <!-- Dark/Light Mode Toggle -->
-        <button id="theme-toggle" class="p-2 rounded-md text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" aria-label="Toggle Theme">
+        <button id="theme-toggle" class="p-1.5 rounded-md text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" aria-label="Toggle Theme">
           <svg id="moon-icon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
           <svg id="sun-icon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
         </button>
-      </nav>
+      </div>
     </div>
-  </header>
+  </aside>
 
-  <main class="max-w-4xl mx-auto px-6 pt-16 pb-24 space-y-24">
-
-    <!-- Hero Section -->
-    <section id="about" class="space-y-6 pt-6">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-800">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        Data Analyst &bull; Data Scientist &bull; AI/ML Engineer
-      </div>
-
-      <h1 class="font-serif text-4xl sm:text-5xl font-light tracking-tight leading-tight text-neutral-900 dark:text-neutral-50">
-        Extracting actionable insights from data, engineering predictive systems, and shipping production ML solutions.
-      </h1>
-
-      <p class="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed max-w-2xl">
-        I specialize in end-to-end data pipelines, predictive statistical modeling, computer vision, and NLP architectures. Through both full-cycle engineering and client freelance consulting, I transform unstructured real-world datasets into high-signal analytical dashboards and robust machine learning models.
-      </p>
-
-      <div class="flex flex-wrap items-center gap-4 pt-2">
-        <a href="#experience" class="px-4 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-sm font-medium rounded-md hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors">
-          View Experience
+  <!-- ================= MAIN VIEWPORT CONTAINER ================= -->
+  <div id="viewport-container" class="w-full bg-paper-50 dark:bg-paper-950 transition-all duration-300 ease-in-out flex-1">
+    
+    <!-- Navigation -->
+    <header class="border-b border-neutral-200/70 dark:border-neutral-800/80 bg-paper-50/90 dark:bg-paper-950/90 backdrop-blur-md">
+      <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="font-serif text-xl tracking-tight hover:opacity-75 transition-opacity font-medium">
+          Mahesh Dethe
         </a>
-        <a href="#projects" class="px-4 py-2 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 text-sm font-medium rounded-md border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
-          Explore Projects
-        </a>
-        <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors flex items-center gap-1.5 font-mono">
-          <span>github.com/maheshdethe01</span> &rarr;
-        </a>
+
+        <nav class="flex items-center space-x-5 text-sm">
+          <a href="#about" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">About</a>
+          <a href="#experience" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">Experience</a>
+          <a href="#projects" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">Projects</a>
+          <a href="#contact" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">Contact</a>
+        </nav>
       </div>
-    </section>
+    </header>
 
-    <!-- Experience Timeline Section (Prioritized) -->
-    <section id="experience" class="space-y-8 scroll-mt-20">
-      <div class="border-t border-neutral-200 dark:border-neutral-800 pt-12">
-        <div class="mb-8">
-          <div class="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-1">Career & Consulting</div>
-          <h2 class="font-serif text-3xl font-light text-neutral-900 dark:text-neutral-100">Professional Experience</h2>
+    <main class="max-w-4xl mx-auto px-6 pt-12 pb-20 space-y-20">
+
+      <!-- Hero Section -->
+      <section id="about" class="space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-800">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Data Analyst &bull; Data Scientist &bull; AI/ML Engineer
         </div>
 
-        <div class="relative border-l border-neutral-200 dark:border-neutral-800 ml-3 space-y-12">
+        <h1 class="font-serif text-3xl sm:text-5xl font-light tracking-tight leading-tight text-neutral-900 dark:text-neutral-50">
+          Turning raw business data into predictive intelligence and scalable machine learning workflows.
+        </h1>
 
-          <!-- Role 1: Freelance Consultant -->
-          <div class="relative pl-8">
-            <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-paper-50 dark:ring-paper-950"></div>
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
-              <h3 class="font-serif text-xl font-medium text-neutral-900 dark:text-neutral-100">Freelance Data Analyst & AI/ML Consultant</h3>
-              <span class="text-xs font-mono text-neutral-500">2024 &mdash; Present</span>
-            </div>
-            <div class="text-sm font-mono text-neutral-600 dark:text-neutral-400 mb-3">Independent Client Engagements & Solutions</div>
-            <ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-2 list-disc list-outside ml-4">
-              <li>Delivered end-to-end data analytics and ML solutions for clients, analyzing business-critical datasets and delivering clean exploratory analyses and predictive models.</li>
-              <li>Engineered automated ETL pipelines and reporting workflows using Python (Pandas, GSpread API) and SQL, reducing manual data-entry overhead.</li>
-              <li>Built and deployed custom containerized machine learning endpoints using Docker, FastAPI, and Flask for reliable client handoff.</li>
-              <li>Developed custom computer vision prototypes (OCR document parsing, object detection, and face privacy blurring) for workflow automation.</li>
-            </ul>
-          </div>
-
-          <!-- Role 2: Data Scientist / ML Engineer -->
-          <div class="relative pl-8">
-            <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-neutral-900 dark:bg-neutral-100 ring-4 ring-paper-50 dark:ring-paper-950"></div>
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
-              <h3 class="font-serif text-xl font-medium text-neutral-900 dark:text-neutral-100">Data Scientist & AI/ML Engineer</h3>
-              <span class="text-xs font-mono text-neutral-500">Applied Research & Projects</span>
-            </div>
-            <div class="text-sm font-mono text-neutral-600 dark:text-neutral-400 mb-3">Predictive Modeling & Statistical Inference</div>
-            <ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-2 list-disc list-outside ml-4">
-              <li>Trained and evaluated tabular classification and regression systems using ensemble approaches (Random Forest, Gradient Boosting, XGBoost) and neural nets.</li>
-              <li>Designed NLP sentiment scoring and text classification pipelines across unstructured customer feedback and news datasets.</li>
-              <li>Formulated risk scoring algorithms for credit risk assessment and demographic behavioral clustering using statistical feature selection.</li>
-            </ul>
-          </div>
-
-          <!-- Role 3: Data Analyst -->
-          <div class="relative pl-8">
-            <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-neutral-400 dark:bg-neutral-600 ring-4 ring-paper-50 dark:ring-paper-950"></div>
-            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
-              <h3 class="font-serif text-xl font-medium text-neutral-900 dark:text-neutral-100">Data Analyst</h3>
-              <span class="text-xs font-mono text-neutral-500">EDA, Pipeline Automation & BI</span>
-            </div>
-            <div class="text-sm font-mono text-neutral-600 dark:text-neutral-400 mb-3">Python &bull; SQL &bull; Tableau &bull; Power BI</div>
-            <ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-2 list-disc list-outside ml-4">
-              <li>Performed granular exploratory data analysis (EDA), anomaly detection, and data cleansing on noisy multi-source datasets.</li>
-              <li>Created executive dashboards highlighting vital KPIs, sector performance, and risk vs. return trade-offs for equity markets.</li>
-              <li>Implemented SQL queries and transformations for database hygiene, schema management, and cohort extraction.</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section (From Actual Folder Hierarchy, Filtering Out ML Theory Folders) -->
-    <section id="projects" class="space-y-8 scroll-mt-20">
-      <div class="border-t border-neutral-200 dark:border-neutral-800 pt-12">
-        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-8">
-          <div>
-            <div class="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-1">Applied Portfolio</div>
-            <h2 class="font-serif text-3xl font-light text-neutral-900 dark:text-neutral-100">Featured Projects & Repositories</h2>
-          </div>
-          <a href="https://github.com/maheshdethe01?tab=repositories" target="_blank" rel="noopener noreferrer" class="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white font-mono flex items-center gap-1">
-            <span>View all on GitHub</span> &rarr;
-          </a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-          <!-- Project 1: Investment Advisor -->
-          <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-mono">FinTech / Analytics</span>
-                <span class="text-xs font-mono text-neutral-400">Python &bull; GSpread</span>
-              </div>
-              <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">
-                Investment Advisor
-              </h3>
-              <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                Automated Google Sheets pipeline extracting BSE 500 equities metrics, computing risk-adjusted returns, P/E ratios, and dividend yields for portfolio advisory.
-              </p>
-            </div>
-            <div class="pt-4 mt-2 border-t border-neutral-100 dark:border-neutral-800/80">
-              <a href="https://github.com/maheshdethe01/Investment-Advisor" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
-                View Repository &rarr;
-              </a>
-            </div>
-          </div>
-
-          <!-- Project 2: Credit Risk Assessment -->
-          <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-mono">Risk Modeling</span>
-                <span class="text-xs font-mono text-neutral-400">Scikit-learn</span>
-              </div>
-              <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">
-                Credit Risk Assessment & Segmentation
-              </h3>
-              <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                Evaluates default probability using customer financial profiles, transactional behavior segmentation, and credit scoring algorithms.
-              </p>
-            </div>
-            <div class="pt-4 mt-2 border-t border-neutral-100 dark:border-neutral-800/80">
-              <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
-                Explore on GitHub &rarr;
-              </a>
-            </div>
-          </div>
-
-          <!-- Project 3: Stock Market / Price Prediction -->
-          <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 font-mono">Time Series</span>
-                <span class="text-xs font-mono text-neutral-400">Pandas &bull; ML</span>
-              </div>
-              <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">
-                Stock Market Prediction
-              </h3>
-              <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                Quantitative time-series modeling forecasting historical price shifts for Nifty 50 equities using statistical lags and moving averages.
-              </p>
-            </div>
-            <div class="pt-4 mt-2 border-t border-neutral-100 dark:border-neutral-800/80">
-              <a href="https://github.com/maheshdethe01/Stock-Price-Prediction" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
-                View Repository &rarr;
-              </a>
-            </div>
-          </div>
-
-          <!-- Project 4: Customer Sentiment Analyzer -->
-          <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs px-2 py-0.5 rounded bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-400 font-mono">NLP / Text</span>
-                <span class="text-xs font-mono text-neutral-400">NLTK &bull; Transformers</span>
-              </div>
-              <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">
-                Customer Sentiment Analyzer
-              </h3>
-              <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                Text categorization system that parses client reviews and feedback streams to classify emotional polarity into actionable customer service metrics.
-              </p>
-            </div>
-            <div class="pt-4 mt-2 border-t border-neutral-100 dark:border-neutral-800/80">
-              <a href="https://github.com/maheshdethe01/CUSTOMER-SENTIMENT-ANALYZER" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
-                View Repository &rarr;
-              </a>
-            </div>
-          </div>
-
-          <!-- Project 5: Fake News Detection -->
-          <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 font-mono">Classification</span>
-                <span class="text-xs font-mono text-neutral-400">TF-IDF &bull; ML</span>
-              </div>
-              <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">
-                Fake News Detection
-              </h3>
-              <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                Identifies deceptive journalistic text using linguistic vector representations, n-gram tokenization, and supervised classification.
-              </p>
-            </div>
-            <div class="pt-4 mt-2 border-t border-neutral-100 dark:border-neutral-800/80">
-              <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
-                Explore on GitHub &rarr;
-              </a>
-            </div>
-          </div>
-
-          <!-- Project 6: Computer Vision Suite (Faceblurring, Object Detection, Pose, OCR) -->
-          <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 font-mono">Computer Vision</span>
-                <span class="text-xs font-mono text-neutral-400">OpenCV &bull; PyTorch</span>
-              </div>
-              <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">
-                Vision Automation Suite
-              </h3>
-              <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                Applied computer vision modules: automated Face Blurring for privacy compliance, real-time Object Detection, Human Pose Tracking, and OCR optical extraction.
-              </p>
-            </div>
-            <div class="pt-4 mt-2 border-t border-neutral-100 dark:border-neutral-800/80">
-              <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
-                Explore on GitHub &rarr;
-              </a>
-            </div>
-          </div>
-
-          <!-- Project 7: Containerized MLOps (Docker Projects) -->
-          <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs px-2 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-400 font-mono">DevOps & MLOps</span>
-                <span class="text-xs font-mono text-neutral-400">Docker &bull; API</span>
-              </div>
-              <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">
-                Dockerized Model Deployment
-              </h3>
-              <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                Packaging machine learning inference pipelines into lightweight Docker containers for isolated, reproducible deployment across cloud environments.
-              </p>
-            </div>
-            <div class="pt-4 mt-2 border-t border-neutral-100 dark:border-neutral-800/80">
-              <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
-                Explore on GitHub &rarr;
-              </a>
-            </div>
-          </div>
-
-          <!-- Project 8: Healthcare & Binary Classifiers (Diabetes / Rock or Mine) -->
-          <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs px-2 py-0.5 rounded bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-400 font-mono">Diagnostics</span>
-                <span class="text-xs font-mono text-neutral-400">Scikit-learn</span>
-              </div>
-              <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">
-                Clinical Diagnostics & Sonar Detection
-              </h3>
-              <p class="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
-                High-sensitivity binary classification models for medical diabetes onset screening and sonar frequency signal discrimination (Rock vs. Mine).
-              </p>
-            </div>
-            <div class="pt-4 mt-2 border-t border-neutral-100 dark:border-neutral-800/80">
-              <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
-                Explore on GitHub &rarr;
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Technical Stack Section -->
-    <section id="stack" class="space-y-6 scroll-mt-20">
-      <div class="border-t border-neutral-200 dark:border-neutral-800 pt-12">
-        <h2 class="font-serif text-2xl font-light text-neutral-900 dark:text-neutral-100 mb-6">Technical Skills & Toolkit</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-          <div class="space-y-3 p-5 rounded-lg bg-neutral-100/60 dark:bg-neutral-900/40 border border-neutral-200/60 dark:border-neutral-800/60">
-            <div class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Data Analytics & BI</div>
-            <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              Pandas, NumPy, SQL (MSSQL, PostgreSQL), Tableau, Power BI, Exploratory Data Analysis (EDA), GSpread API, Data Cleansing.
-            </p>
-          </div>
-
-          <div class="space-y-3 p-5 rounded-lg bg-neutral-100/60 dark:bg-neutral-900/40 border border-neutral-200/60 dark:border-neutral-800/60">
-            <div class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">AI / Machine Learning</div>
-            <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              Scikit-learn, XGBoost, LightGBM, Random Forests, PyTorch, Hugging Face Transformers, Time Series Analysis, Natural Language Processing.
-            </p>
-          </div>
-
-          <div class="space-y-3 p-5 rounded-lg bg-neutral-100/60 dark:bg-neutral-900/40 border border-neutral-200/60 dark:border-neutral-800/60">
-            <div class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Vision, MLOps & Tools</div>
-            <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              OpenCV (Pose, Face Blurring, Object Detection), Tesseract OCR, Docker, Git/GitHub, FastAPI, Flask, Python GUI (Tkinter).
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact & Direct Reach Out -->
-    <section id="contact" class="space-y-6 scroll-mt-20">
-      <div class="border-t border-neutral-200 dark:border-neutral-800 pt-12 pb-6">
-        <h2 class="font-serif text-3xl font-light text-neutral-900 dark:text-neutral-100 mb-3">Let's Collaborate</h2>
-        <p class="text-neutral-600 dark:text-neutral-400 text-base max-w-xl mb-6">
-          Available for freelance data consulting, end-to-end data science projects, and full-time AI/ML engineering opportunities.
+        <p class="text-neutral-600 dark:text-neutral-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+          Specializing in end-to-end data analytics, statistical modeling, NLP sentiment engines, and computer vision systems. Backed by client freelance consulting experience delivering automated ETL pipelines, analytical dashboards, and containerized ML APIs.
         </p>
 
-        <div class="flex flex-wrap gap-4 text-sm font-mono">
-          <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 transition-colors flex items-center gap-1.5">
-            <span>GitHub Profile</span> &rarr;
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="#experience" class="px-4 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-sm font-medium rounded-md hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors">
+            View Experience
           </a>
-          <a href="https://www.linkedin.com/in/maheshdethe01/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 transition-colors flex items-center gap-1.5">
+          <a href="#projects" class="px-4 py-2 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 text-sm font-medium rounded-md border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
+            Explore Projects
+          </a>
+          <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="px-3 py-2 text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors flex items-center gap-1 font-mono">
+            github.com/maheshdethe01 &rarr;
+          </a>
+        </div>
+      </section>
+
+      <!-- Professional Experience Timeline -->
+      <section id="experience" class="space-y-8 scroll-mt-20">
+        <div class="border-t border-neutral-200 dark:border-neutral-800 pt-10">
+          <div class="mb-8">
+            <div class="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-1">Career & Consulting</div>
+            <h2 class="font-serif text-2xl sm:text-3xl font-light text-neutral-900 dark:text-neutral-100">Professional Experience</h2>
+          </div>
+
+          <div class="relative border-l border-neutral-200 dark:border-neutral-800 ml-3 space-y-10">
+
+            <!-- Freelance Consultant -->
+            <div class="relative pl-7">
+              <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-4 ring-paper-50 dark:ring-paper-950"></div>
+              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+                <h3 class="font-serif text-lg sm:text-xl font-medium text-neutral-900 dark:text-neutral-100">Freelance Data Analyst & AI/ML Consultant</h3>
+                <span class="text-xs font-mono text-neutral-500">2024 &mdash; Present</span>
+              </div>
+              <div class="text-xs sm:text-sm font-mono text-neutral-600 dark:text-neutral-400 mb-3">Independent Solutions & Consulting</div>
+              <ul class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 space-y-2 list-disc list-outside ml-4">
+                <li>Partnered with clients to engineer end-to-end data analytics solutions, converting disorganized business datasets into executive insights.</li>
+                <li>Designed automated ETL pipelines and data collection scrapers using Python (Pandas, GSpread API), reducing operational reporting time.</li>
+                <li>Shipped containerized inference applications with Docker and REST endpoints for reliable, reproducible client deployments.</li>
+                <li>Built automated computer vision utilities (OCR text extraction, object detection, face privacy blurring) tailored to client automation requests.</li>
+              </ul>
+            </div>
+
+            <!-- Data Scientist / ML Engineer -->
+            <div class="relative pl-7">
+              <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-neutral-900 dark:bg-neutral-100 ring-4 ring-paper-50 dark:ring-paper-950"></div>
+              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+                <h3 class="font-serif text-lg sm:text-xl font-medium text-neutral-900 dark:text-neutral-100">Data Scientist & AI/ML Engineer</h3>
+                <span class="text-xs font-mono text-neutral-500">Projects & Model Engineering</span>
+              </div>
+              <div class="text-xs sm:text-sm font-mono text-neutral-600 dark:text-neutral-400 mb-3">Predictive Modeling & Statistical Inference</div>
+              <ul class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 space-y-2 list-disc list-outside ml-4">
+                <li>Trained supervised classification and regression pipelines utilizing Random Forests, Gradient Boosting, XGBoost, and neural networks.</li>
+                <li>Developed NLP text processing pipelines for customer sentiment scoring and fake news categorization using tokenization and embedding techniques.</li>
+                <li>Implemented time-series financial equity prediction models analyzing historical Nifty 50 trends.</li>
+              </ul>
+            </div>
+
+            <!-- Data Analyst -->
+            <div class="relative pl-7">
+              <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-neutral-400 dark:bg-neutral-600 ring-4 ring-paper-50 dark:ring-paper-950"></div>
+              <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+                <h3 class="font-serif text-lg sm:text-xl font-medium text-neutral-900 dark:text-neutral-100">Data Analyst</h3>
+                <span class="text-xs font-mono text-neutral-500">Exploratory Analysis & BI</span>
+              </div>
+              <div class="text-xs sm:text-sm font-mono text-neutral-600 dark:text-neutral-400 mb-3">Python &bull; SQL &bull; Tableau &bull; Power BI</div>
+              <ul class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 space-y-2 list-disc list-outside ml-4">
+                <li>Conducted rigorous Exploratory Data Analysis (EDA) to expose feature correlations, remove outliers, and identify distribution skew.</li>
+                <li>Structured relational queries (SQL) for customer segmentation, cohort retention, and credit risk evaluations.</li>
+                <li>Built intuitive visual analytics reports and Tableau dashboards for financial risk and resource distribution.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Applied Projects Section -->
+      <section id="projects" class="space-y-8 scroll-mt-20">
+        <div class="border-t border-neutral-200 dark:border-neutral-800 pt-10">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-8">
+            <div>
+              <div class="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-1">Portfolio Folders & Code</div>
+              <h2 class="font-serif text-2xl sm:text-3xl font-light text-neutral-900 dark:text-neutral-100">Applied Projects</h2>
+            </div>
+            <a href="https://github.com/maheshdethe01?tab=repositories" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:white">
+              All GitHub Repositories &rarr;
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- Card 1: Investment Advisor -->
+            <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 transition-all flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 font-mono">FinTech / Analytics</span>
+                  <span class="text-xs font-mono text-neutral-400">Python &bull; GSpread</span>
+                </div>
+                <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">Investment Advisor</h3>
+                <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  Automated financial pipeline pulling BSE 500 equities into Google Sheets, computing risk metrics, P/E ratios, and dividend yields for portfolio balancing.
+                </p>
+              </div>
+              <div class="pt-4 mt-3 border-t border-neutral-100 dark:border-neutral-800/80">
+                <a href="https://github.com/maheshdethe01/Investment-Advisor" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
+                  View Repository &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 2: Credit Risk Assessment -->
+            <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 transition-all flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 font-mono">Risk Modeling</span>
+                  <span class="text-xs font-mono text-neutral-400">Scikit-learn</span>
+                </div>
+                <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">Credit Risk Assessment</h3>
+                <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  Supervised scoring model predicting loan default probabilities and customer creditworthiness across demographic segments.
+                </p>
+              </div>
+              <div class="pt-4 mt-3 border-t border-neutral-100 dark:border-neutral-800/80">
+                <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
+                  Explore on GitHub &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 3: Stock Market Prediction -->
+            <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 transition-all flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 font-mono">Time Series</span>
+                  <span class="text-xs font-mono text-neutral-400">Pandas &bull; ML</span>
+                </div>
+                <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">Stock Market Prediction</h3>
+                <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  Time-series model analyzing historical price trends, moving averages, and volatility indices for Nifty 50 stocks.
+                </p>
+              </div>
+              <div class="pt-4 mt-3 border-t border-neutral-100 dark:border-neutral-800/80">
+                <a href="https://github.com/maheshdethe01/Stock-Price-Prediction" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
+                  View Repository &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 4: Customer Sentiment Analyzer -->
+            <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 transition-all flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs px-2 py-0.5 rounded bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-400 font-mono">NLP / Text</span>
+                  <span class="text-xs font-mono text-neutral-400">NLTK &bull; Transformers</span>
+                </div>
+                <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">Customer Sentiment Analyzer</h3>
+                <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  NLP classification model classifying customer reviews into positive, neutral, or negative feedback categories.
+                </p>
+              </div>
+              <div class="pt-4 mt-3 border-t border-neutral-100 dark:border-neutral-800/80">
+                <a href="https://github.com/maheshdethe01/CUSTOMER-SENTIMENT-ANALYZER" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
+                  View Repository &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 5: Fake News Detection -->
+            <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 transition-all flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 font-mono">Text ML</span>
+                  <span class="text-xs font-mono text-neutral-400">TF-IDF &bull; Scikit</span>
+                </div>
+                <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">Fake News Detection</h3>
+                <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  Supervised classifier identifying fabricated articles and headlines using lexical vectorization and n-gram analysis.
+                </p>
+              </div>
+              <div class="pt-4 mt-3 border-t border-neutral-100 dark:border-neutral-800/80">
+                <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
+                  Explore on GitHub &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 6: Vision Suite -->
+            <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 transition-all flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 font-mono">Computer Vision</span>
+                  <span class="text-xs font-mono text-neutral-400">OpenCV &bull; OCR</span>
+                </div>
+                <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">Vision Automation Suite</h3>
+                <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  Image pipelines for automated Face Blurring privacy, Object Detection, Human Pose Estimation, and OCR text extraction.
+                </p>
+              </div>
+              <div class="pt-4 mt-3 border-t border-neutral-100 dark:border-neutral-800/80">
+                <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
+                  Explore on GitHub &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 7: Docker Projects -->
+            <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 transition-all flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs px-2 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-400 font-mono">MLOps</span>
+                  <span class="text-xs font-mono text-neutral-400">Docker &bull; API</span>
+                </div>
+                <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">Dockerized ML Workflows</h3>
+                <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  Packaging predictive machine learning applications into lightweight Docker containers for portable deployment.
+                </p>
+              </div>
+              <div class="pt-4 mt-3 border-t border-neutral-100 dark:border-neutral-800/80">
+                <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
+                  Explore on GitHub &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 8: Diagnostics & Classification -->
+            <div class="p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 transition-all flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs px-2 py-0.5 rounded bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-400 font-mono">Classification</span>
+                  <span class="text-xs font-mono text-neutral-400">Scikit-learn</span>
+                </div>
+                <h3 class="font-mono text-base font-semibold text-neutral-900 dark:text-neutral-100">Diabetes & Sonar Diagnostics</h3>
+                <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                  Predictive clinical diabetes risk models and sonar signal discrimination algorithms (Rock vs. Mine) with feature scaling.
+                </p>
+              </div>
+              <div class="pt-4 mt-3 border-t border-neutral-100 dark:border-neutral-800/80">
+                <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
+                  Explore on GitHub &rarr;
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Grid -->
+      <section class="space-y-6">
+        <div class="border-t border-neutral-200 dark:border-neutral-800 pt-10">
+          <h2 class="font-serif text-2xl font-light text-neutral-900 dark:text-neutral-100 mb-6">Technical Skills & Toolkit</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs sm:text-sm">
+            <div class="p-4 rounded-lg bg-neutral-100/60 dark:bg-neutral-900/40 border border-neutral-200/60 dark:border-neutral-800/60">
+              <div class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2">Data Analytics & BI</div>
+              <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                Pandas, NumPy, SQL (MSSQL, PostgreSQL), Tableau, Power BI, Exploratory Data Analysis (EDA), GSpread API, Data Cleansing.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-lg bg-neutral-100/60 dark:bg-neutral-900/40 border border-neutral-200/60 dark:border-neutral-800/60">
+              <div class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2">AI / Machine Learning</div>
+              <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                Scikit-learn, XGBoost, LightGBM, Random Forests, PyTorch, Hugging Face, Time Series Forecasting, NLP Sentiment.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-lg bg-neutral-100/60 dark:bg-neutral-900/40 border border-neutral-200/60 dark:border-neutral-800/60">
+              <div class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500 mb-2">Vision, MLOps & Tools</div>
+              <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                OpenCV (Face Blurring, Object Detection, Pose), Tesseract OCR, Docker, Git/GitHub, FastAPI, Flask, Python Tkinter.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="space-y-6 scroll-mt-20">
+        <div class="border-t border-neutral-200 dark:border-neutral-800 pt-10 pb-4">
+          <h2 class="font-serif text-2xl sm:text-3xl font-light text-neutral-900 dark:text-neutral-100 mb-2">Get in Touch</h2>
+          <p class="text-neutral-600 dark:text-neutral-400 text-sm sm:text-base max-w-xl mb-6">
+            Available for freelance data consulting, end-to-end data science projects, and full-time AI/ML engineering roles.
+          </p>
+
+          <div class="flex flex-wrap gap-3 text-xs sm:text-sm font-mono">
+            <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 transition-colors flex items-center gap-1.5">
+              <span>GitHub Profile</span> &rarr;
+            </a>
+            <a href="https://www.linkedin.com/in/maheshdethe01/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 transition-colors flex items-center gap-1.5">
             <span>LinkedIn Profile</span> &rarr;
           </a>
           <a href="mailto:mddetheanalyst@gmail.com" class="px-4 py-2 rounded border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 transition-colors">
             Email Me &rarr;
           </a>
+          </div>
         </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-neutral-200 dark:border-neutral-800 py-6 text-center text-xs font-mono text-neutral-500">
+      <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span>&copy; <span id="year"></span> <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="underline hover:text-neutral-900 dark:hover:text-white">Mahesh Dethe</a></span>
+        <a href="#" class="hover:underline">Back to top &uarr;</a>
       </div>
-    </section>
+    </footer>
 
-  </main>
+  </div>
 
-  <!-- Minimalist Footer -->
-  <footer class="border-t border-neutral-200 dark:border-neutral-800 py-8 text-center text-xs font-mono text-neutral-500">
-    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span>&copy; <span id="year"></span> <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="underline hover:text-neutral-900 dark:hover:text-white">Mahesh Dethe</a>. Minimalist portfolio.</span>
-      <a href="#" class="hover:underline">Back to top &uarr;</a>
-    </div>
-  </footer>
-
-  <!-- Script for Theme Toggle & Dynamic Year -->
+  <!-- Interactive Viewport Switcher & Theme Scripts -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Viewport Toggle Elements
+    const btnDesktop = document.getElementById('btn-desktop');
+    const btnMobile = document.getElementById('btn-mobile');
+    const viewportContainer = document.getElementById('viewport-container');
+    const viewportLabel = document.getElementById('viewport-label');
+
+    // Switch to Clean Mobile View (No bezel / curved border)
+    btnMobile.addEventListener('click', () => {
+      viewportContainer.classList.add('mobile-mode-active');
+      
+      btnMobile.classList.add('bg-white', 'dark:bg-neutral-700', 'text-neutral-900', 'dark:text-white', 'shadow-sm');
+      btnMobile.classList.remove('text-neutral-600', 'dark:text-neutral-400');
+
+      btnDesktop.classList.remove('bg-white', 'dark:bg-neutral-700', 'text-neutral-900', 'dark:text-white', 'shadow-sm');
+      btnDesktop.classList.add('text-neutral-600', 'dark:text-neutral-400');
+
+      viewportLabel.textContent = 'Current: Mobile View (390px Width)';
+    });
+
+    // Switch to Full Desktop View
+    btnDesktop.addEventListener('click', () => {
+      viewportContainer.classList.remove('mobile-mode-active');
+
+      btnDesktop.classList.add('bg-white', 'dark:bg-neutral-700', 'text-neutral-900', 'dark:text-white', 'shadow-sm');
+      btnDesktop.classList.remove('text-neutral-600', 'dark:text-neutral-400');
+
+      btnMobile.classList.remove('bg-white', 'dark:bg-neutral-700', 'text-neutral-900', 'dark:text-white', 'shadow-sm');
+      btnMobile.classList.add('text-neutral-600', 'dark:text-neutral-400');
+
+      viewportLabel.textContent = 'Current: Full Desktop Width';
+    });
+
+    // Dark/Light Mode
     const toggleButton = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 

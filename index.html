@@ -3,46 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>alex.dev // AI Researcher & Systems Explorer</title>
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Inter & JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <title>Mahesh Dethe — AI/ML Engineer & AI Governance Enthusiast</title>
+  <meta name="description" content="Personal portfolio of Mahesh Dethe: AI/ML Engineer, AI Governance Enthusiast (NIST AI RMF, ISO 27001:2022 LA), and Data Visualization Specialist.">
   
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Menlo', 'monospace']
           },
           colors: {
-            brand: {
-              cyan: '#06b6d4',
-              emerald: '#10b981',
-              violet: '#8b5cf6',
-              amber: '#f59e0b'
-            }
-          },
-          animation: {
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float': 'float 6s ease-in-out infinite',
-            'gradient': 'gradient 8s ease infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-10px)' },
-            },
-            gradient: {
-              '0%, 100%': { backgroundPosition: '0% 50%' },
-              '50%': { backgroundPosition: '100% 50%' },
+            paper: {
+              50: '#FDFCF9',
+              100: '#F7F6F1',
+              200: '#EDEBE2',
+              800: '#18191B',
+              900: '#111214',
+              950: '#0C0D0E'
             }
           }
         }
@@ -50,1324 +33,397 @@
     }
   </script>
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+
   <style>
-    /* Custom Accent Color Dynamic CSS Variables */
-    :root {
-      --accent-color: #06b6d4; /* Default: Cyan */
-      --accent-rgb: 6, 182, 212;
-      --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+    ::selection {
+      background: #111214;
+      color: #FDFCF9;
     }
-
-    body.accent-emerald {
-      --accent-color: #10b981;
-      --accent-rgb: 16, 185, 129;
-      --accent-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-    }
-
-    body.accent-violet {
-      --accent-color: #a855f7;
-      --accent-rgb: 168, 85, 247;
-      --accent-gradient: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-    }
-
-    body.accent-amber {
-      --accent-color: #f59e0b;
-      --accent-rgb: 245, 158, 11;
-      --accent-gradient: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
-    }
-
-    .text-accent { color: var(--accent-color); }
-    .bg-accent { background-color: var(--accent-color); }
-    .border-accent { border-color: var(--accent-color); }
-    .hover-border-accent:hover { border-color: var(--accent-color); }
-    .glow-accent {
-      box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.25);
-    }
-    .glow-sm {
-      box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.2);
-    }
-
-    /* Subtle grid background pattern */
-    .bg-grid {
-      background-size: 36px 36px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    }
-
-    /* Custom Terminal scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #090d16;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1f293d;
-      border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(var(--accent-rgb), 0.5);
+    .dark ::selection {
+      background: #EDEBE2;
+      color: #111214;
     }
   </style>
 </head>
-<body class="bg-[#07090e] text-slate-200 font-sans antialiased selection:bg-cyan-500/20 selection:text-cyan-300 min-h-screen flex flex-col relative overflow-x-hidden">
 
-  <!-- Ambient Light Effects -->
-  <div class="fixed top-0 left-1/4 -translate-y-1/2 w-96 h-96 bg-[var(--accent-color)] opacity-10 rounded-full blur-3xl pointer-events-none transition-all duration-700"></div>
-  <div class="fixed bottom-0 right-10 translate-y-1/3 w-[30rem] h-[30rem] bg-indigo-600 opacity-10 rounded-full blur-3xl pointer-events-none"></div>
+<body class="bg-paper-50 dark:bg-paper-950 text-neutral-800 dark:text-neutral-200 font-sans antialiased transition-colors duration-200">
 
-  <header class="sticky top-0 z-50 backdrop-blur-md bg-[#07090e]/85 border-b border-slate-800/80 transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      
-      <!-- Brand Logo -->
-      <a href="#" class="flex items-center space-x-2.5 group">
-        <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-slate-900 border border-slate-700/80 text-accent font-mono font-bold text-sm shadow-inner group-hover:border-[var(--accent-color)] transition-colors">
-          &gt;_
-        </span>
-        <div class="flex flex-col">
-          <span class="font-mono text-sm font-semibold tracking-tight text-white flex items-center gap-1.5">
-            alex<span class="text-accent">.dev</span>
-            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-          </span>
-          <span class="text-[10px] text-slate-400 font-mono tracking-wider">AI RESEARCH & SYSTEMS</span>
-        </div>
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 bg-paper-50/90 dark:bg-paper-950/90 backdrop-blur-md border-b border-neutral-200/70 dark:border-neutral-800/80">
+    <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="font-serif text-xl tracking-tight hover:opacity-75 transition-opacity font-medium">
+        Mahesh Dethe
       </a>
 
-      <!-- Desktop Navigation Menu -->
-      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-mono">
-        <a href="#about" class="px-3 py-1.5 text-slate-400 hover:text-white rounded-md hover:bg-slate-800/60 transition">About</a>
-        <a href="#framework" class="px-3 py-1.5 text-slate-400 hover:text-white rounded-md hover:bg-slate-800/60 transition">Philosophy</a>
-        <a href="#research" class="px-3 py-1.5 text-slate-400 hover:text-white rounded-md hover:bg-slate-800/60 transition">Research</a>
-        <a href="#playground" class="px-3 py-1.5 text-slate-400 hover:text-white rounded-md hover:bg-slate-800/60 transition">Playground</a>
-        <a href="#stack" class="px-3 py-1.5 text-slate-400 hover:text-white rounded-md hover:bg-slate-800/60 transition">Stack</a>
-        <a href="#contact" class="px-3 py-1.5 text-slate-400 hover:text-white rounded-md hover:bg-slate-800/60 transition">Contact</a>
-      </nav>
-
-      <!-- Theme / Accent Swapping Toolbar -->
-      <div class="flex items-center space-x-3">
-        <!-- Palette Switcher dropdown-like pills -->
-        <div class="flex items-center space-x-1.5 bg-slate-900/90 border border-slate-800 p-1 rounded-full px-2" title="Switch Theme Accent">
-          <button onclick="setAccent('cyan')" class="w-3.5 h-3.5 rounded-full bg-cyan-400 hover:scale-125 transition-transform" aria-label="Cyan theme"></button>
-          <button onclick="setAccent('emerald')" class="w-3.5 h-3.5 rounded-full bg-emerald-400 hover:scale-125 transition-transform" aria-label="Emerald theme"></button>
-          <button onclick="setAccent('violet')" class="w-3.5 h-3.5 rounded-full bg-purple-400 hover:scale-125 transition-transform" aria-label="Violet theme"></button>
-          <button onclick="setAccent('amber')" class="w-3.5 h-3.5 rounded-full bg-amber-400 hover:scale-125 transition-transform" aria-label="Amber theme"></button>
-        </div>
-
-        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-[var(--accent-color)] text-xs font-mono font-medium text-accent hover:bg-[var(--accent-color)] hover:text-slate-950 transition-all">
-          <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
-          <span>Let's Talk</span>
+      <nav class="flex items-center space-x-6 text-sm">
+        <a href="#about" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">About</a>
+        <a href="#projects" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">Projects</a>
+        <a href="#tableau" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors flex items-center gap-1.5 font-medium">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
+          Tableau
         </a>
+        <a href="#experience" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">Timeline</a>
+        <a href="#contact" class="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">Contact</a>
 
-        <!-- Mobile Menu Toggle Button -->
-        <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-400 hover:text-white focus:outline-none" aria-label="Toggle Navigation">
-          <i data-lucide="menu" class="w-5 h-5"></i>
+        <!-- Dark/Light Mode Toggle -->
+        <button id="theme-toggle" class="p-2 rounded-md text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" aria-label="Toggle Theme">
+          <svg id="moon-icon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg id="sun-icon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
         </button>
-      </div>
-    </div>
-
-    <!-- Mobile Dropdown Navigation -->
-    <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-4 border-t border-slate-800/80 bg-[#090d16] font-mono text-sm space-y-2">
-      <a href="#about" class="block px-3 py-2 rounded-md hover:bg-slate-800 text-slate-300">About</a>
-      <a href="#framework" class="block px-3 py-2 rounded-md hover:bg-slate-800 text-slate-300">Philosophy</a>
-      <a href="#research" class="block px-3 py-2 rounded-md hover:bg-slate-800 text-slate-300">Research & Projects</a>
-      <a href="#playground" class="block px-3 py-2 rounded-md hover:bg-slate-800 text-slate-300">Interactive Sandbox</a>
-      <a href="#stack" class="block px-3 py-2 rounded-md hover:bg-slate-800 text-slate-300">Tech Stack</a>
-      <a href="#contact" class="block px-3 py-2 rounded-md hover:bg-slate-800 text-slate-300">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <main class="flex-grow bg-grid">
-    <section id="about" class="relative py-20 lg:py-28 overflow-hidden border-b border-slate-800/60">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          <!-- Hero Copy -->
-          <div class="lg:col-span-7 space-y-6 text-left">
-            <!-- Status Badge -->
-            <div class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs font-mono">
-              <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span class="text-slate-300">AI Learner & Frontier Model Researcher</span>
-              <span class="text-slate-500">|</span>
-              <span class="text-accent font-semibold">Open to Collaborations</span>
-            </div>
+  <main class="max-w-4xl mx-auto px-6 pt-16 pb-24 space-y-24">
 
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
-              Dissecting deep neural nets, 
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">
-                from raw intuition to
-              </span>
-              <span class="text-accent block">scaled production.</span>
-            </h1>
+    <!-- Hero Section -->
+    <section id="about" class="space-y-6 pt-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-800">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        AI/ML Engineer &bull; AI Governance Enthusiast &bull; ISO 27001:2022 LA
+      </div>
 
-            <p class="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed">
-              Hi, I'm an AI researcher and systems architect focused on scalable architectures, mechanistical interpretability, multimodal LLMs, and high-efficiency reasoning engines. I bridge rigorous mathematical theory with low-latency algorithmic engineering.
-            </p>
+      <h1 class="font-serif text-4xl sm:text-5xl font-light tracking-tight leading-tight text-neutral-900 dark:text-neutral-50">
+        Building high-performing deep learning systems, guided by rigorous AI governance and actionable visual analytics.
+      </h1>
 
-            <!-- Metrics / Highlights strip -->
-            <div class="grid grid-cols-3 gap-4 pt-2 pb-2 font-mono text-sm">
-              <div class="p-3 bg-slate-900/70 border border-slate-800/80 rounded-xl">
-                <div class="text-xl font-bold text-white text-accent">14+</div>
-                <div class="text-xs text-slate-400">Papers Analyzed & Re-implemented</div>
-              </div>
-              <div class="p-3 bg-slate-900/70 border border-slate-800/80 rounded-xl">
-                <div class="text-xl font-bold text-white text-accent">99.4%</div>
-                <div class="text-xs text-slate-400">Inference Precision on Custom Benchmarks</div>
-              </div>
-              <div class="p-3 bg-slate-900/70 border border-slate-800/80 rounded-xl">
-                <div class="text-xl font-bold text-white text-accent">3x</div>
-                <div class="text-xs text-slate-400">Speedup via Triton & FlashAttn V2</div>
-              </div>
-            </div>
+      <p class="text-neutral-600 dark:text-neutral-400 text-lg leading-relaxed max-w-2xl">
+        I bridge the gap between technical model optimization and responsible, compliant AI deployment. My work spans fine-tuning transformer architectures, automating financial data pipelines, designing interactive business intelligence dashboards, and structuring frameworks for risk mitigation under NIST AI RMF and ISO 27001.
+      </p>
 
-            <!-- Action buttons -->
-            <div class="flex flex-wrap gap-4 pt-4 font-mono text-sm">
-              <a href="#research" class="px-6 py-3 rounded-xl bg-[var(--accent-color)] text-slate-950 font-semibold hover:opacity-95 transition-all shadow-lg glow-sm flex items-center gap-2">
-                <i data-lucide="sparkles" class="w-4 h-4"></i>
-                <span>Explore Work</span>
-              </a>
-              <a href="#framework" class="px-6 py-3 rounded-xl bg-slate-900 border border-slate-700/80 hover:border-slate-500 text-slate-300 hover:text-white transition-all flex items-center gap-2">
-                <i data-lucide="book-open" class="w-4 h-4"></i>
-                <span>Problem Philosophy</span>
-              </a>
-              <a href="#contact" class="px-5 py-3 rounded-xl bg-slate-900/50 hover:bg-slate-800/70 border border-slate-800 text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2">
-                <i data-lucide="send" class="w-4 h-4"></i>
-                <span>Contact</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Hero Terminal Showcase Card -->
-          <div class="lg:col-span-5">
-            <div class="relative mx-auto rounded-2xl bg-[#0b0f19] border border-slate-800 shadow-2xl overflow-hidden glow-accent font-mono">
-              <!-- Window controls header -->
-              <div class="flex items-center justify-between px-4 py-3 bg-[#0e1422] border-b border-slate-800">
-                <div class="flex items-center space-x-2">
-                  <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                  <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
-                  <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
-                </div>
-                <span class="text-xs text-slate-400 tracking-wider">researcher_profile.py</span>
-                <span class="text-[10px] bg-slate-800/80 px-2 py-0.5 rounded text-accent">Python 3.12</span>
-              </div>
-              
-              <!-- Code block content -->
-              <div class="p-5 text-xs sm:text-[13px] leading-relaxed overflow-x-auto space-y-2 text-slate-300">
-                <div><span class="text-purple-400">import</span> torch</div>
-                <div><span class="text-purple-400">from</span> dataclasses <span class="text-purple-400">import</span> dataclass</div>
-                <br>
-                <div><span class="text-purple-400">@dataclass</span></div>
-                <div><span class="text-blue-400">class</span> <span class="text-yellow-300">ResearcherProfile</span>:</div>
-                <div class="pl-4 text-slate-400">role: <span class="text-emerald-400">str</span> = <span class="text-cyan-300">"Frontier AI & Deep Learning"</span></div>
-                <div class="pl-4 text-slate-400">primary_focus: <span class="text-emerald-400">list</span> = [</div>
-                <div class="pl-8 text-cyan-300">"Mechanistic Interpretability",</div>
-                <div class="pl-8 text-cyan-300">"Low-Rank Adaptations (LoRA)",</div>
-                <div class="pl-8 text-cyan-300">"Autonomous Agent Frameworks"</div>
-                <div class="pl-4 text-slate-400">]</div>
-                <div class="pl-4 text-slate-400">mindset: <span class="text-emerald-400">str</span> = <span class="text-cyan-300">"Verify through first-principles code"</span></div>
-                <br>
-                <div><span class="text-blue-400">def</span> <span class="text-yellow-300">solve_problem</span>(problem_spec):</div>
-                <div class="pl-4 text-slate-400"><span class="text-purple-400">return</span> problem_spec.formulate() \</div>
-                <div class="pl-8 text-slate-400">.dissect_math() \</div>
-                <div class="pl-8 text-slate-400">.benchmark_real_world()</div>
-                <br>
-                <div class="text-emerald-400 flex items-center gap-1.5">
-                  <span class="text-slate-500">&gt;&gt;&gt;</span> profile.solve_problem("Alignment Drift")
-                </div>
-                <div class="text-cyan-400/90 text-[11px] bg-slate-900/80 p-2 rounded border border-slate-800">
-                  ⚡ Status: [Convergence reached. Perplexity optimized: 2.14]
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <div class="flex flex-wrap items-center gap-4 pt-2">
+        <a href="#projects" class="px-4 py-2 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 text-sm font-medium rounded-md hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors">
+          View Projects
+        </a>
+        <a href="#tableau" class="px-4 py-2 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 text-sm font-medium rounded-md border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11 2v4H7V2h4zm2 0h4v4h-4V2zM7 8v4H3V8h4zm14 0v4h-4V8h4zm-8 0v4h-2V8h2zm0 6v4H7v-4h4zm2 0h4v4h-4v-4zm-8 6v4H3v-4h4zm14 0v4h-4v-4h4z"/></svg>
+          Explore Tableau Dashboards
+        </a>
+        <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors">
+          GitHub &rarr;
+        </a>
       </div>
     </section>
 
-    <section id="framework" class="py-20 border-b border-slate-800/60 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-accent">
-            <i data-lucide="compass" class="w-3.5 h-3.5"></i>
-            METHODOLOGY & COGNITIVE MODEL
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            The 4-Step Research & Solving Framework
-          </h2>
-          <p class="text-slate-400 text-sm sm:text-base">
-            Every breakthrough begins with uncompromising clarity. Here is how I navigate ambiguous AI problems from inception to scalable implementations.
-          </p>
-        </div>
-
-        <!-- 4 Steps Interactive Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          
-          <!-- Step 01 -->
-          <div class="group relative bg-[#0b0f19] border border-slate-800/90 hover-border-accent p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-2xl font-mono font-black text-slate-600 group-hover:text-accent transition-colors">01</span>
-                <span class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-accent">
-                  <i data-lucide="target" class="w-5 h-5"></i>
-                </span>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors">Definition</h3>
-              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">Formulate precise scope</p>
-              <p class="text-sm text-slate-400 leading-relaxed">
-                Strip away ambiguity. State hypothesis, failure modes, boundary constraints, and quantifiable target evaluation metrics (e.g., loss curves, latency, VRAM budgets).
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-slate-800/80 font-mono text-xs text-slate-500">
-              Output: Formal spec & test criteria
-            </div>
-          </div>
-
-          <!-- Step 02 -->
-          <div class="group relative bg-[#0b0f19] border border-slate-800/90 hover-border-accent p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-2xl font-mono font-black text-slate-600 group-hover:text-accent transition-colors">02</span>
-                <span class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-accent">
-                  <i data-lucide="cpu" class="w-5 h-5"></i>
-                </span>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors">Deep Explanation</h3>
-              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">Mechanics & Intuition</p>
-              <p class="text-sm text-slate-400 leading-relaxed">
-                Probe the underlying mathematical manifold. Understand matrix transformations, gradients, parameter dynamics, and inductive biases before touching any framework.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-slate-800/80 font-mono text-xs text-slate-500">
-              Output: Proofs & mathematical schematics
-            </div>
-          </div>
-
-          <!-- Step 03 -->
-          <div class="group relative bg-[#0b0f19] border border-slate-800/90 hover-border-accent p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-2xl font-mono font-black text-slate-600 group-hover:text-accent transition-colors">03</span>
-                <span class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-accent">
-                  <i data-lucide="network" class="w-5 h-5"></i>
-                </span>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors">Real-Life Examples</h3>
-              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">Grounding to reality</p>
-              <p class="text-sm text-slate-400 leading-relaxed">
-                Tie theoretical breakthroughs to production environments: e.g., low-latency robotic perception, clinical diagnostic support, or high-throughput retrieval.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-slate-800/80 font-mono text-xs text-slate-500">
-              Output: Empirical case studies & datasets
-            </div>
-          </div>
-
-          <!-- Step 04 -->
-          <div class="group relative bg-[#0b0f19] border border-slate-800/90 hover-border-accent p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-2xl font-mono font-black text-slate-600 group-hover:text-accent transition-colors">04</span>
-                <span class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-accent">
-                  <i data-lucide="git-merge" class="w-5 h-5"></i>
-                </span>
-              </div>
-              <h3 class="text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors">Algorithmic Process</h3>
-              <p class="text-xs font-mono text-slate-400 mb-3 uppercase tracking-wider">Execution Pipeline</p>
-              <p class="text-sm text-slate-400 leading-relaxed">
-                Translate insight into deterministic code: custom CUDA kernels, clean modular PyTorch implementations, distributed training runs, and unit-tested pipelines.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-slate-800/80 font-mono text-xs text-slate-500">
-              Output: Scalable repository & production weights
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Framework Interactive Deep Dive Tab -->
-        <div class="mt-12 bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8">
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800">
-            <div>
-              <h4 class="text-base font-semibold text-white font-mono flex items-center gap-2">
-                <i data-lucide="terminal" class="w-4 h-4 text-accent"></i>
-                Sample In-Depth Walkthrough: "KV-Cache Memory Bottleneck"
-              </h4>
-              <p class="text-xs text-slate-400 mt-1">Select a stage to view how the 4-step framework is applied to tackle long-context LLM degradation.</p>
-            </div>
-            <div class="inline-flex rounded-lg bg-slate-950 p-1 border border-slate-800 text-xs font-mono">
-              <button onclick="showStageDetails(1)" id="stageBtn1" class="stage-btn px-3 py-1.5 rounded-md bg-accent text-slate-950 font-semibold">1. Define</button>
-              <button onclick="showStageDetails(2)" id="stageBtn2" class="stage-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white">2. Deep Expl.</button>
-              <button onclick="showStageDetails(3)" id="stageBtn3" class="stage-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white">3. Examples</button>
-              <button onclick="showStageDetails(4)" id="stageBtn4" class="stage-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white">4. Algorithm</button>
-            </div>
-          </div>
-
-          <div id="stageContent" class="pt-6 font-mono text-xs sm:text-sm text-slate-300 leading-relaxed">
-            <!-- Dynamic JS injected content -->
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section id="research" class="py-20 border-b border-slate-800/60">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+    <!-- Tableau Showcase Section -->
+    <section id="tableau" class="space-y-8 scroll-mt-20">
+      <div class="border-t border-neutral-200 dark:border-neutral-800 pt-12">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-8">
           <div>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-accent mb-3">
-              <i data-lucide="layers" class="w-3.5 h-3.5"></i>
-              EXPLORATION & CODE ARTIFACTS
+            <div class="text-xs font-mono uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-semibold mb-1">Visual Intelligence</div>
+            <h2 class="font-serif text-3xl font-light text-neutral-900 dark:text-neutral-100">Tableau & Analytics Showcase</h2>
+          </div>
+          <p class="text-sm text-neutral-500 dark:text-neutral-400">Interactive dashboards turning complex datasets into executive decisions</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Tableau Card 1 -->
+          <div class="group border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 bg-white dark:bg-neutral-900/60 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                Financial Risk & BSE 500
+              </span>
+              <span class="text-xs text-neutral-400 font-mono">Python &bull; GSpread &bull; Tableau</span>
             </div>
-            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Selected Research & Implementations
-            </h2>
-            <p class="text-slate-400 text-sm mt-2 max-w-xl">
-              A curated collection of reproduction studies, autonomous agent architectures, vision-language distillations, and efficiency experiments.
+            <h3 class="font-serif text-xl font-medium text-neutral-900 dark:text-neutral-100 mb-2">
+              Investment Advisor: Risk & Return Dashboard
+            </h3>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
+              Automated end-to-end data pipeline feeding BSE 500 equities into Tableau. Evaluates Market Cap, P/E, 3-Year Return, and Dividend Per Share with customizable risk-tolerance filters.
+            </p>
+            <div class="space-y-2.5 text-xs text-neutral-600 dark:text-neutral-400 border-t border-neutral-100 dark:border-neutral-800/80 pt-4 mb-6 font-mono">
+              <div class="flex justify-between"><span>Enterprise Value Median</span><span class="font-semibold text-neutral-800 dark:text-neutral-200">Insurance & Finance</span></div>
+              <div class="flex justify-between"><span>Max 1-Year Returns</span><span class="font-semibold text-neutral-800 dark:text-neutral-200">Pumps, Energy & Auto</span></div>
+            </div>
+            <div class="flex items-center gap-3">
+              <a href="https://github.com/maheshdethe01/Investment-Advisor" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
+                View Repo Details &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Tableau Card 2 -->
+          <div class="group border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 bg-white dark:bg-neutral-900/60 hover:border-neutral-400 dark:hover:border-neutral-600 transition-all">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
+                Resource Analytics
+              </span>
+              <span class="text-xs text-neutral-400 font-mono">Geospatial &bull; Public Impact</span>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-neutral-900 dark:text-neutral-100 mb-2">
+              India Water Portal Geospatial Analytics
+            </h3>
+            <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-6 leading-relaxed">
+              Geographic and temporal data visualization mapping regional water metrics, conservation initiatives, and resource distribution across Indian states for public transparency.
+            </p>
+            <div class="space-y-2.5 text-xs text-neutral-600 dark:text-neutral-400 border-t border-neutral-100 dark:border-neutral-800/80 pt-4 mb-6 font-mono">
+              <div class="flex justify-between"><span>Layering</span><span class="font-semibold text-neutral-800 dark:text-neutral-200">Dual-axis Spatial Maps</span></div>
+              <div class="flex justify-between"><span>Focus Area</span><span class="font-semibold text-neutral-800 dark:text-neutral-200">Regional Water Disparities</span></div>
+            </div>
+            <div class="flex items-center gap-3">
+              <a href="https://github.com/maheshdethe01/INDIA-WATER-PORTAL" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-neutral-900 dark:text-neutral-100 hover:underline flex items-center gap-1">
+                View Project Files &rarr;
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="space-y-8 scroll-mt-20">
+      <div class="border-t border-neutral-200 dark:border-neutral-800 pt-12">
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-8">
+          <div>
+            <div class="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-1">Code & Architectures</div>
+            <h2 class="font-serif text-3xl font-light text-neutral-900 dark:text-neutral-100">Featured Repositories</h2>
+          </div>
+          <a href="https://github.com/maheshdethe01?tab=repositories" target="_blank" rel="noopener noreferrer" class="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:white">
+            All 19 repositories on GitHub &rarr;
+          </a>
+        </div>
+
+        <div class="space-y-4">
+
+          <!-- Project Row 1 -->
+          <a href="https://github.com/maheshdethe01/Investment-Advisor" target="_blank" rel="noopener noreferrer" class="block p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <h3 class="font-mono text-base font-medium text-neutral-900 dark:text-neutral-100">Investment-Advisor</h3>
+                  <span class="text-xs px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 font-mono">Financial Risk</span>
+                </div>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">Automated Google Sheets integration using Python & GSpread, analyzing BSE 500 equities with customized Tableau risk dashboards.</p>
+              </div>
+              <span class="text-xs font-mono text-neutral-400 whitespace-nowrap">Jupyter Notebook / Python</span>
+            </div>
+          </a>
+
+          <!-- Project Row 2 -->
+          <a href="https://github.com/maheshdethe01/INDIA-WATER-PORTAL" target="_blank" rel="noopener noreferrer" class="block p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <h3 class="font-mono text-base font-medium text-neutral-900 dark:text-neutral-100">INDIA-WATER-PORTAL</h3>
+                  <span class="text-xs px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 font-mono">Visualization</span>
+                </div>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">End-to-end data visualization project exploring groundwater quality, extraction indices, and resource analytics.</p>
+              </div>
+              <span class="text-xs font-mono text-neutral-400 whitespace-nowrap">Data Analysis / BI</span>
+            </div>
+          </a>
+
+          <!-- Project Row 3 -->
+          <a href="https://github.com/maheshdethe01/Stock-Price-Prediction" target="_blank" rel="noopener noreferrer" class="block p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <h3 class="font-mono text-base font-medium text-neutral-900 dark:text-neutral-100">Stock-Price-Prediction</h3>
+                  <span class="text-xs px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 font-mono">Time Series</span>
+                </div>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">Predictive modeling pipeline for Nifty 50 historical equity movements utilizing sequential learning algorithms.</p>
+              </div>
+              <span class="text-xs font-mono text-neutral-400 whitespace-nowrap">Jupyter Notebook</span>
+            </div>
+          </a>
+
+          <!-- Project Row 4 -->
+          <a href="https://github.com/maheshdethe01/CUSTOMER-SENTIMENT-ANALYZER" target="_blank" rel="noopener noreferrer" class="block p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <h3 class="font-mono text-base font-medium text-neutral-900 dark:text-neutral-100">CUSTOMER-SENTIMENT-ANALYZER</h3>
+                  <span class="text-xs px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 font-mono">NLP</span>
+                </div>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">Natural Language Processing classification model detecting sentiment polarity in feedback loops.</p>
+              </div>
+              <span class="text-xs font-mono text-neutral-400 whitespace-nowrap">Transformers / NLP</span>
+            </div>
+          </a>
+
+          <!-- Project Row 5 -->
+          <a href="https://github.com/maheshdethe01/MultiLinear-Regression-MLR-" target="_blank" rel="noopener noreferrer" class="block p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <h3 class="font-mono text-base font-medium text-neutral-900 dark:text-neutral-100">MultiLinear-Regression-MLR-</h3>
+                  <span class="text-xs px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 font-mono">Statistical ML</span>
+                </div>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">Statistical multi-variable linear regression model covering collinearity checks, residual analytics, and validation.</p>
+              </div>
+              <span class="text-xs font-mono text-neutral-400 whitespace-nowrap">Scikit-learn</span>
+            </div>
+          </a>
+
+          <!-- Project Row 6 -->
+          <a href="https://github.com/maheshdethe01/Calculator-App" target="_blank" rel="noopener noreferrer" class="block p-5 rounded-lg border border-neutral-200 dark:border-neutral-800/80 hover:border-neutral-400 dark:hover:border-neutral-600 bg-white/60 dark:bg-neutral-900/40 hover:bg-white dark:hover:bg-neutral-900 transition-all">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <h3 class="font-mono text-base font-medium text-neutral-900 dark:text-neutral-100">Calculator-App</h3>
+                  <span class="text-xs px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 font-mono">GUI Tool</span>
+                </div>
+                <p class="text-sm text-neutral-600 dark:text-neutral-400">Lightweight, functional desktop calculator application built with Python and Tkinter for basic arithmetic operations.</p>
+              </div>
+              <span class="text-xs font-mono text-neutral-400 whitespace-nowrap">Python / Tkinter</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience & Governance Timeline -->
+    <section id="experience" class="space-y-8 scroll-mt-20">
+      <div class="border-t border-neutral-200 dark:border-neutral-800 pt-12">
+        <div class="mb-8">
+          <div class="text-xs font-mono uppercase tracking-wider text-neutral-500 mb-1">Career & Focus</div>
+          <h2 class="font-serif text-3xl font-light text-neutral-900 dark:text-neutral-100">Experience & Specialization</h2>
+        </div>
+
+        <div class="relative border-l border-neutral-200 dark:border-neutral-800 ml-3 space-y-12">
+
+          <!-- Item 1 -->
+          <div class="relative pl-8">
+            <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-neutral-900 dark:bg-neutral-100 ring-4 ring-paper-50 dark:ring-paper-950"></div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+              <h3 class="font-serif text-xl font-medium text-neutral-900 dark:text-neutral-100">AI / ML Engineer & Researcher</h3>
+              <span class="text-xs font-mono text-neutral-500">Present</span>
+            </div>
+            <div class="text-sm font-mono text-neutral-600 dark:text-neutral-400 mb-3">Model Fine-Tuning & Optimization</div>
+            <ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-2 list-disc list-outside ml-4">
+              <li>Benchmarking fine-tuned Transformer models (BERT, RoBERTa) against traditional baselines for classification accuracy, F1-scores, and inference latency.</li>
+              <li>Architecting modular pipelines for sequential modeling, time-series forecasting, and natural language sentiment analytics.</li>
+              <li>Implementing boosting algorithms (XGBoost, LightGBM, CatBoost) for predictive numerical tasks and fraud detection paradigms.</li>
+            </ul>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="relative pl-8">
+            <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-neutral-400 dark:bg-neutral-600 ring-4 ring-paper-50 dark:ring-paper-950"></div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+              <h3 class="font-serif text-xl font-medium text-neutral-900 dark:text-neutral-100">AI Governance & Cybersecurity GRC</h3>
+              <span class="text-xs font-mono text-neutral-500">Certified Auditor</span>
+            </div>
+            <div class="text-sm font-mono text-neutral-600 dark:text-neutral-400 mb-3">ISO 27001:2022 Lead Auditor (LA) &bull; NIST AI RMF</div>
+            <ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-2 list-disc list-outside ml-4">
+              <li>Formulating governance structures and risk assessments following NIST AI Risk Management Framework (AI RMF) and NIST SSDF.</li>
+              <li>Conducting information security audits aligned with ISO 27001:2022 standards, mapping AI safety loopholes and model lifecycle risks.</li>
+              <li>Analyzing compliance requirements under data protection regulations including India's Digital Personal Data Protection (DPDP) Act.</li>
+            </ul>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="relative pl-8">
+            <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-neutral-300 dark:bg-neutral-700 ring-4 ring-paper-50 dark:ring-paper-950"></div>
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+              <h3 class="font-serif text-xl font-medium text-neutral-900 dark:text-neutral-100">Data Analytics & Business Intelligence</h3>
+              <span class="text-xs font-mono text-neutral-500">Projects & Dashboards</span>
+            </div>
+            <div class="text-sm font-mono text-neutral-600 dark:text-neutral-400 mb-3">Tableau &bull; Power BI &bull; MSSQL &bull; Python</div>
+            <ul class="text-sm text-neutral-600 dark:text-neutral-400 space-y-2 list-disc list-outside ml-4">
+              <li>Designed executive dashboards for equity risk evaluation, connecting automated Python ETL pipelines directly with Tableau sheets.</li>
+              <li>Engineered clean datasets and conducted exploratory spatial analytics for environmental and socioeconomic research.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Stack Section -->
+    <section class="space-y-6">
+      <div class="border-t border-neutral-200 dark:border-neutral-800 pt-12">
+        <h2 class="font-serif text-2xl font-light text-neutral-900 dark:text-neutral-100 mb-6">Technical Skills & Toolkit</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+          <div class="space-y-3 p-4 rounded-lg bg-neutral-100/60 dark:bg-neutral-900/40 border border-neutral-200/60 dark:border-neutral-800/60">
+            <div class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Machine Learning & Deep Learning</div>
+            <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              Transformers (BERT, RoBERTa, GPT-2), XGBoost, LightGBM, CatBoost, Scikit-learn, CNNs, LSTMs, Hugging Face, PyTorch.
             </p>
           </div>
 
-          <!-- Category filter buttons -->
-          <div class="flex flex-wrap gap-2 font-mono text-xs" id="filterContainer">
-            <button onclick="filterProjects('all')" class="filter-btn px-3 py-1.5 rounded-lg border border-accent bg-accent text-slate-950 font-bold" data-cat="all">All (6)</button>
-            <button onclick="filterProjects('llm')" class="filter-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-white" data-cat="llm">LLMs & Reasoning</button>
-            <button onclick="filterProjects('cv')" class="filter-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-white" data-cat="cv">Vision-Language</button>
-            <button onclick="filterProjects('agents')" class="filter-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-white" data-cat="agents">Autonomous Agents</button>
-            <button onclick="filterProjects('interpretability')" class="filter-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-white" data-cat="interpretability">Interpretability</button>
-          </div>
-        </div>
-
-        <!-- Project Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projectsGrid">
-          <!-- Card 1 -->
-          <div class="project-card group bg-[#0b0f19] border border-slate-800 hover-border-accent rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1" data-cat="llm">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-cyan-950/60 text-cyan-400 border border-cyan-800/50">LLMs & Reasoning</span>
-                <span class="text-xs font-mono text-slate-500">2026 // Active</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2">
-                Speculative Sparse-Decoding Engine
-              </h3>
-              <p class="text-sm text-slate-400 leading-relaxed mb-4">
-                Engineered draft-model speculative verification with token clustering. Attained 2.8x wall-clock inference speedups on 70B parameter models under FP8 quantization.
-              </p>
-              <div class="flex flex-wrap gap-1.5 mb-6">
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">PyTorch</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">FlashAttention-2</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">CUDA</span>
-              </div>
-            </div>
-            <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
-              <button onclick="openModal('sparse-decoding')" class="text-accent hover:underline flex items-center gap-1">
-                <i data-lucide="eye" class="w-3.5 h-3.5"></i> Read Analysis
-              </button>
-              <a href="https://github.com" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-white flex items-center gap-1">
-                <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
-              </a>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="project-card group bg-[#0b0f19] border border-slate-800 hover-border-accent rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1" data-cat="interpretability">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-purple-950/60 text-purple-400 border border-purple-800/50">Interpretability</span>
-                <span class="text-xs font-mono text-slate-500">2026 // Research</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2">
-                Sparse Autoencoder Circuit Decomposition
-              </h3>
-              <p class="text-sm text-slate-400 leading-relaxed mb-4">
-                Trained high-capacity dictionary learning SAEs over residual streams of transformers to identify monosemantic feature vectors governing safety bypass vulnerabilities.
-              </p>
-              <div class="flex flex-wrap gap-1.5 mb-6">
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">SAE</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">TransformerLens</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">JAX</span>
-              </div>
-            </div>
-            <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
-              <button onclick="openModal('sae-circuits')" class="text-accent hover:underline flex items-center gap-1">
-                <i data-lucide="eye" class="w-3.5 h-3.5"></i> Read Analysis
-              </button>
-              <a href="https://arxiv.org" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-white flex items-center gap-1">
-                <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Paper
-              </a>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="project-card group bg-[#0b0f19] border border-slate-800 hover-border-accent rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1" data-cat="agents">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">Autonomous Agents</span>
-                <span class="text-xs font-mono text-slate-500">2025 // Production</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2">
-                AeroCode: Self-Healing Repo Agent
-              </h3>
-              <p class="text-sm text-slate-400 leading-relaxed mb-4">
-                Autonomous system that traverses git histories, analyzes stack traces via abstract syntax trees, synthesizes unit tests, and drafts self-verifying pull requests.
-              </p>
-              <div class="flex flex-wrap gap-1.5 mb-6">
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">LangGraph</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">Tree-sitter</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">Docker</span>
-              </div>
-            </div>
-            <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
-              <button onclick="openModal('aerocode')" class="text-accent hover:underline flex items-center gap-1">
-                <i data-lucide="eye" class="w-3.5 h-3.5"></i> Read Analysis
-              </button>
-              <a href="https://github.com" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-white flex items-center gap-1">
-                <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
-              </a>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="project-card group bg-[#0b0f19] border border-slate-800 hover-border-accent rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1" data-cat="cv">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-blue-950/60 text-blue-400 border border-blue-800/50">Vision-Language</span>
-                <span class="text-xs font-mono text-slate-500">2025 // Benchmark</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2">
-                Zero-Shot Spatial Visual Grounder
-              </h3>
-              <p class="text-sm text-slate-400 leading-relaxed mb-4">
-                Cross-attention alignment connecting SigLIP encoders to causal decoders, achieving state-of-the-art zero-shot bounding-box resolution on cluttered aerial drone imagery.
-              </p>
-              <div class="flex flex-wrap gap-1.5 mb-6">
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">OpenCLIP</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">PyTorch</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">ONNX</span>
-              </div>
-            </div>
-            <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
-              <button onclick="openModal('spatial-grounder')" class="text-accent hover:underline flex items-center gap-1">
-                <i data-lucide="eye" class="w-3.5 h-3.5"></i> Read Analysis
-              </button>
-              <a href="https://github.com" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-white flex items-center gap-1">
-                <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
-              </a>
-            </div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="project-card group bg-[#0b0f19] border border-slate-800 hover-border-accent rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1" data-cat="llm">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-cyan-950/60 text-cyan-400 border border-cyan-800/50">LLMs & Reasoning</span>
-                <span class="text-xs font-mono text-slate-500">2025 // Optimization</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2">
-                TinyReason: Distilled MCTS Reasoner
-              </h3>
-              <p class="text-sm text-slate-400 leading-relaxed mb-4">
-                Distilling Monte Carlo Tree Search rollouts into a compact 3B parameter model via Process Supervision PRMs, outperforming standard Chain-of-Thought on GSM8K.
-              </p>
-              <div class="flex flex-wrap gap-1.5 mb-6">
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">PRM</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">Unsloth</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">DPO</span>
-              </div>
-            </div>
-            <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
-              <button onclick="openModal('tiny-reason')" class="text-accent hover:underline flex items-center gap-1">
-                <i data-lucide="eye" class="w-3.5 h-3.5"></i> Read Analysis
-              </button>
-              <a href="https://huggingface.co" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-white flex items-center gap-1">
-                <i data-lucide="share-2" class="w-3.5 h-3.5"></i> Model
-              </a>
-            </div>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="project-card group bg-[#0b0f19] border border-slate-800 hover-border-accent rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1" data-cat="agents">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">Autonomous Agents</span>
-                <span class="text-xs font-mono text-slate-500">2024 // Framework</span>
-              </div>
-              <h3 class="text-lg font-bold text-white group-hover:text-accent transition-colors mb-2">
-                Multi-Agent Consensus Consensus Engine
-              </h3>
-              <p class="text-sm text-slate-400 leading-relaxed mb-4">
-                Decentralized debate framework simulating adversarial peer review rounds between specialized LLM agents to detect logical inconsistencies before final generation.
-              </p>
-              <div class="flex flex-wrap gap-1.5 mb-6">
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">AsyncIO</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">Redis</span>
-                <span class="text-[11px] font-mono bg-slate-900 px-2 py-0.5 rounded text-slate-300 border border-slate-800">FastAPI</span>
-              </div>
-            </div>
-            <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
-              <button onclick="openModal('consensus')" class="text-accent hover:underline flex items-center gap-1">
-                <i data-lucide="eye" class="w-3.5 h-3.5"></i> Read Analysis
-              </button>
-              <a href="https://github.com" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-white flex items-center gap-1">
-                <i data-lucide="github" class="w-3.5 h-3.5"></i> Code
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section id="playground" class="py-20 border-b border-slate-800/60 bg-[#090d16]/70">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-accent">
-            <i data-lucide="code" class="w-3.5 h-3.5"></i>
-            LIVE REPL & SIMULATION
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            Interactive Research Terminal
-          </h2>
-          <p class="text-slate-400 text-sm">
-            Execute sample commands, simulate attention head activations, benchmark quantizations, or inspect tensor memory limits directly in your browser.
-          </p>
-        </div>
-
-        <div class="max-w-4xl mx-auto bg-[#07090e] border border-slate-800 rounded-2xl overflow-hidden shadow-2xl glow-sm">
-          <!-- Terminal Title bar -->
-          <div class="flex items-center justify-between px-4 py-3 bg-[#0d121f] border-b border-slate-800 text-xs font-mono text-slate-400">
-            <div class="flex items-center space-x-2">
-              <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-              <span class="ml-2 text-slate-300 font-semibold">sandbox@alex-ai-cluster:~/research</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <span class="text-[11px] text-emerald-400 flex items-center gap-1">
-                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> GPU: NVIDIA H100 SXM5 (Simulated)
-              </span>
-            </div>
-          </div>
-
-          <!-- Terminal Output Screen -->
-          <div id="terminalBody" class="p-6 font-mono text-xs sm:text-[13px] leading-relaxed h-80 overflow-y-auto space-y-3 text-slate-300">
-            <div class="text-slate-500">// Welcome to Research OS v4.2.1-lts</div>
-            <div class="text-slate-500">// Type <span class="text-accent">help</span> to view available operations or click a quick prompt below.</div>
-            <div class="text-slate-400">
-              <span class="text-accent">guest@alex-research</span>:<span class="text-purple-400">~</span>$ <span class="text-white">model --inspect --top-circuit</span>
-            </div>
-            <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-800/80 text-xs space-y-1">
-              <div class="text-emerald-400">✓ Target: Multi-Head Self-Attention Layer 18 [Head 4]</div>
-              <div class="text-slate-400">Detected Function: <span class="text-yellow-300">Induction Head (Token Pair Copying)</span></div>
-              <div class="text-slate-400">Information Flow: L18H4 -&gt; MLP_19 -&gt; Residual [Cosine sim: 0.892]</div>
-            </div>
-          </div>
-
-          <!-- Quick Action Buttons -->
-          <div class="px-6 py-2.5 bg-[#0a0e1a] border-t border-slate-800/80 flex flex-wrap items-center gap-2 text-xs font-mono">
-            <span class="text-slate-500">Quick run:</span>
-            <button onclick="runCommand('benchmark --fp8')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition">benchmark --fp8</button>
-            <button onclick="runCommand('inspect --lora')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition">inspect --lora</button>
-            <button onclick="runCommand('evaluate --agent')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition">evaluate --agent</button>
-            <button onclick="runCommand('clear')" class="px-2.5 py-1 rounded bg-slate-800/50 hover:bg-red-950/40 text-slate-400 hover:text-red-300 transition ml-auto">clear</button>
-          </div>
-
-          <!-- Terminal Input Prompt -->
-          <div class="p-4 bg-[#080c16] border-t border-slate-800 flex items-center font-mono text-xs sm:text-sm">
-            <span class="text-accent mr-2 font-bold">&gt;</span>
-            <input 
-              type="text" 
-              id="terminalInput" 
-              placeholder="Type command: 'help', 'benchmark', 'skills', 'contact', 'clear'..." 
-              class="w-full bg-transparent text-slate-200 focus:outline-none placeholder-slate-600 font-mono"
-              autocomplete="off"
-            >
-            <button onclick="handleTerminalSubmit()" class="ml-2 px-3 py-1 bg-[var(--accent-color)] text-slate-950 font-semibold rounded text-xs">Run</button>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section id="stack" class="py-20 border-b border-slate-800/60">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-accent">
-            <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
-            ARSENAL & CAPABILITIES
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            Core Technical Stack
-          </h2>
-          <p class="text-slate-400 text-sm">
-            Modern toolsets, hardware accelerators, and framework ecosystems leveraged across deep learning research and deployment.
-          </p>
-        </div>
-
-        <!-- Tech Cards Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          
-          <!-- Stack Item -->
-          <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800 hover-border-accent transition group">
-            <div class="flex items-center space-x-3 mb-2">
-              <span class="p-2 rounded-lg bg-slate-900 text-orange-400 border border-slate-800 group-hover:scale-110 transition-transform">
-                <i data-lucide="flame" class="w-5 h-5"></i>
-              </span>
-              <div>
-                <h4 class="text-sm font-semibold text-white">PyTorch</h4>
-                <span class="text-[10px] font-mono text-slate-400">Deep Learning</span>
-              </div>
-            </div>
-            <p class="text-xs text-slate-400">Custom autograd operators, distributed FSDP, dynamic computation graphs.</p>
-          </div>
-
-          <!-- Stack Item -->
-          <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800 hover-border-accent transition group">
-            <div class="flex items-center space-x-3 mb-2">
-              <span class="p-2 rounded-lg bg-slate-900 text-cyan-400 border border-slate-800 group-hover:scale-110 transition-transform">
-                <i data-lucide="zap" class="w-5 h-5"></i>
-              </span>
-              <div>
-                <h4 class="text-sm font-semibold text-white">JAX & Flax</h4>
-                <span class="text-[10px] font-mono text-slate-400">Vectorized TPU/GPU</span>
-              </div>
-            </div>
-            <p class="text-xs text-slate-400">Pure-function training pipelines, vmap/pmap parallel primitives.</p>
-          </div>
-
-          <!-- Stack Item -->
-          <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800 hover-border-accent transition group">
-            <div class="flex items-center space-x-3 mb-2">
-              <span class="p-2 rounded-lg bg-slate-900 text-yellow-400 border border-slate-800 group-hover:scale-110 transition-transform">
-                <i data-lucide="box" class="w-5 h-5"></i>
-              </span>
-              <div>
-                <h4 class="text-sm font-semibold text-white">Transformers</h4>
-                <span class="text-[10px] font-mono text-slate-400">Hugging Face Ecosystem</span>
-              </div>
-            </div>
-            <p class="text-xs text-slate-400">Tokenizers, PEFT, TRL, accelerate, and custom attention mechanisms.</p>
-          </div>
-
-          <!-- Stack Item -->
-          <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800 hover-border-accent transition group">
-            <div class="flex items-center space-x-3 mb-2">
-              <span class="p-2 rounded-lg bg-slate-900 text-green-400 border border-slate-800 group-hover:scale-110 transition-transform">
-                <i data-lucide="binary" class="w-5 h-5"></i>
-              </span>
-              <div>
-                <h4 class="text-sm font-semibold text-white">CUDA & Triton</h4>
-                <span class="text-[10px] font-mono text-slate-400">Kernel Engineering</span>
-              </div>
-            </div>
-            <p class="text-xs text-slate-400">Memory coalescing, SRAM caching, custom fused kernel ops.</p>
-          </div>
-
-          <!-- Stack Item -->
-          <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800 hover-border-accent transition group">
-            <div class="flex items-center space-x-3 mb-2">
-              <span class="p-2 rounded-lg bg-slate-900 text-blue-400 border border-slate-800 group-hover:scale-110 transition-transform">
-                <i data-lucide="bot" class="w-5 h-5"></i>
-              </span>
-              <div>
-                <h4 class="text-sm font-semibold text-white">LangGraph & LlamaIndex</h4>
-                <span class="text-[10px] font-mono text-slate-400">Agent Architectures</span>
-              </div>
-            </div>
-            <p class="text-xs text-slate-400">State-machine agent graph design, RAG routing, semantic caches.</p>
-          </div>
-
-          <!-- Stack Item -->
-          <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800 hover-border-accent transition group">
-            <div class="flex items-center space-x-3 mb-2">
-              <span class="p-2 rounded-lg bg-slate-900 text-purple-400 border border-slate-800 group-hover:scale-110 transition-transform">
-                <i data-lucide="server" class="w-5 h-5"></i>
-              </span>
-              <div>
-                <h4 class="text-sm font-semibold text-white">vLLM & TensorRT-LLM</h4>
-                <span class="text-[10px] font-mono text-slate-400">High-Throughput Serving</span>
-              </div>
-            </div>
-            <p class="text-xs text-slate-400">PagedAttention, continuous batching, AWQ / FP8 quantification.</p>
-          </div>
-
-          <!-- Stack Item -->
-          <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800 hover-border-accent transition group">
-            <div class="flex items-center space-x-3 mb-2">
-              <span class="p-2 rounded-lg bg-slate-900 text-pink-400 border border-slate-800 group-hover:scale-110 transition-transform">
-                <i data-lucide="database" class="w-5 h-5"></i>
-              </span>
-              <div>
-                <h4 class="text-sm font-semibold text-white">Qdrant / Milvus</h4>
-                <span class="text-[10px] font-mono text-slate-400">Vector Indexing</span>
-              </div>
-            </div>
-            <p class="text-xs text-slate-400">HNSW graph tuning, hybrid BM25 + dense neural retrieval.</p>
-          </div>
-
-          <!-- Stack Item -->
-          <div class="p-4 rounded-xl bg-[#0b0f19] border border-slate-800 hover-border-accent transition group">
-            <div class="flex items-center space-x-3 mb-2">
-              <span class="p-2 rounded-lg bg-slate-900 text-emerald-400 border border-slate-800 group-hover:scale-110 transition-transform">
-                <i data-lucide="activity" class="w-5 h-5"></i>
-              </span>
-              <div>
-                <h4 class="text-sm font-semibold text-white">MLOps & W&B</h4>
-                <span class="text-[10px] font-mono text-slate-400">Experiment Tracking</span>
-              </div>
-            </div>
-            <p class="text-xs text-slate-400">Loss telemetry, gradient norm monitoring, hyperparameter sweeps.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="py-20 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          
-          <!-- Contact Info -->
-          <div class="lg:col-span-5 space-y-6">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-accent">
-              <i data-lucide="radio" class="w-3.5 h-3.5"></i>
-              TRANSMIT PACKETS
-            </div>
-            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Let's build frontier AI systems together.
-            </h2>
-            <p class="text-slate-400 text-sm leading-relaxed">
-              I am interested in research collaborations, sponsored exploratory AI investigations, open-source model optimization, and frontier AI systems engineering roles.
+          <div class="space-y-3 p-4 rounded-lg bg-neutral-100/60 dark:bg-neutral-900/40 border border-neutral-200/60 dark:border-neutral-800/60">
+            <div class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">Governance & Cybersecurity</div>
+            <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              NIST AI RMF, NIST SSDF, ISO 27001:2022 Lead Auditor (LA), DPDP Act, AI Ethics, Fairness/Bias Auditing, Risk Mitigation.
             </p>
-
-            <div class="space-y-3 font-mono text-xs">
-              <div class="flex items-center space-x-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
-                <i data-lucide="mail" class="w-4 h-4 text-accent"></i>
-                <span class="text-slate-300">alex@frontier-research.dev</span>
-                <button onclick="copyToClipboard('alex@frontier-research.dev')" class="ml-auto text-slate-500 hover:text-accent" title="Copy email">
-                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                </button>
-              </div>
-
-              <div class="flex items-center space-x-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
-                <i data-lucide="map-pin" class="w-4 h-4 text-accent"></i>
-                <span class="text-slate-300">San Francisco, CA &amp; Remote</span>
-              </div>
-            </div>
-
-            <!-- Social Links Strip -->
-            <div class="pt-2 flex flex-wrap gap-2.5 font-mono text-xs">
-              <a href="https://github.com" target="_blank" rel="noreferrer" class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-600 text-slate-300 hover:text-white flex items-center gap-2 transition">
-                <i data-lucide="github" class="w-4 h-4"></i> GitHub
-              </a>
-              <a href="https://huggingface.co" target="_blank" rel="noreferrer" class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-600 text-slate-300 hover:text-white flex items-center gap-2 transition">
-                <i data-lucide="smile" class="w-4 h-4 text-yellow-400"></i> Hugging Face
-              </a>
-              <a href="https://arxiv.org" target="_blank" rel="noreferrer" class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-600 text-slate-300 hover:text-white flex items-center gap-2 transition">
-                <i data-lucide="file-text" class="w-4 h-4 text-red-400"></i> arXiv
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-600 text-slate-300 hover:text-white flex items-center gap-2 transition">
-                <i data-lucide="linkedin" class="w-4 h-4 text-blue-400"></i> LinkedIn
-              </a>
-            </div>
           </div>
 
-          <!-- Contact Form / Message Dispatcher -->
-          <div class="lg:col-span-7">
-            <div class="bg-[#0b0f19] border border-slate-800 p-6 sm:p-8 rounded-2xl glow-sm relative">
-              <h3 class="text-lg font-bold text-white mb-2 font-mono flex items-center gap-2">
-                <span class="text-accent">&gt;</span> Send Message via Secure Channel
-              </h3>
-              <p class="text-xs text-slate-400 mb-6">Fill in details to dispatch an inquiry directly to my communication hub.</p>
-              
-              <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4 font-mono text-xs">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div class="space-y-1.5">
-                    <label class="text-slate-400">Name / Handle</label>
-                    <input type="text" id="senderName" required placeholder="e.g. Dr. Alan Turing" class="w-full bg-[#07090e] border border-slate-800 rounded-lg p-3 text-slate-200 focus:outline-none focus:border-accent">
-                  </div>
-                  <div class="space-y-1.5">
-                    <label class="text-slate-400">Email Address</label>
-                    <input type="email" id="senderEmail" required placeholder="e.g. alan@institute.edu" class="w-full bg-[#07090e] border border-slate-800 rounded-lg p-3 text-slate-200 focus:outline-none focus:border-accent">
-                  </div>
-                </div>
-
-                <div class="space-y-1.5">
-                  <label class="text-slate-400">Subject / Category</label>
-                  <select id="senderTopic" class="w-full bg-[#07090e] border border-slate-800 rounded-lg p-3 text-slate-200 focus:outline-none focus:border-accent">
-                    <option>Research Collaboration</option>
-                    <option>Model Interpretability Review</option>
-                    <option>Technical Advisory / Consulting</option>
-                    <option>Open-Source Contribution</option>
-                    <option>General Inquiries</option>
-                  </select>
-                </div>
-
-                <div class="space-y-1.5">
-                  <label class="text-slate-400">Transmission Payload (Message)</label>
-                  <textarea id="senderMsg" rows="4" required placeholder="Describe the problem, paper ideas, or project requirements..." class="w-full bg-[#07090e] border border-slate-800 rounded-lg p-3 text-slate-200 focus:outline-none focus:border-accent"></textarea>
-                </div>
-
-                <button type="submit" class="w-full py-3.5 rounded-xl bg-[var(--accent-color)] text-slate-950 font-bold hover:opacity-90 transition flex items-center justify-center gap-2">
-                  <i data-lucide="send" class="w-4 h-4"></i>
-                  <span>Dispatch Message</span>
-                </button>
-              </form>
-
-              <!-- Feedback message alert box -->
-              <div id="formNotification" class="hidden mt-4 p-3 rounded-lg text-xs font-mono border"></div>
-            </div>
+          <div class="space-y-3 p-4 rounded-lg bg-neutral-100/60 dark:bg-neutral-900/40 border border-neutral-200/60 dark:border-neutral-800/60">
+            <div class="font-mono text-xs font-semibold uppercase tracking-wider text-neutral-500">BI, Data & Engineering</div>
+            <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              Tableau, Power BI, MSSQL, Pandas, NumPy, GSpread automation, Python Tkinter, Matplotlib, Seaborn.
+            </p>
           </div>
-
         </div>
-
       </div>
     </section>
+
+    <!-- Contact & Reach Out -->
+    <section id="contact" class="space-y-6 scroll-mt-20">
+      <div class="border-t border-neutral-200 dark:border-neutral-800 pt-12 pb-6">
+        <h2 class="font-serif text-3xl font-light text-neutral-900 dark:text-neutral-100 mb-3">Get in Touch</h2>
+        <p class="text-neutral-600 dark:text-neutral-400 text-base max-w-xl mb-6">
+          Whether you want to discuss machine learning applications, AI Governance and compliance audits, or visual dashboard engineering, feel free to reach out.
+        </p>
+
+        <div class="flex flex-wrap gap-4 text-sm font-mono">
+          <a href="https://github.com/maheshdethe01" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 transition-colors">
+            GitHub &rarr;
+          </a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded border border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300 transition-colors">
+            LinkedIn &rarr;
+          </a>
+          <a href="#tableau" class="px-4 py-2 rounded border border-emerald-300 dark:border-emerald-800 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition-colors">
+            Tableau Projects &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer class="bg-[#05070a] border-t border-slate-800/80 py-8 font-mono text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center space-x-2">
-        <span class="w-2 h-2 rounded-full bg-accent"></span>
-        <span>alex.dev // AI Researcher Portfolio &amp; Knowledge Base</span>
-      </div>
-      <div class="text-center sm:text-right text-[11px]">
-        Built with clean semantic HTML, Tailwind CSS &amp; Vanilla JS. 
-        <span class="text-slate-400">Zero bloat.</span>
-      </div>
+  <!-- Footer -->
+  <footer class="border-t border-neutral-200 dark:border-neutral-800 py-8 text-center text-xs font-mono text-neutral-500">
+    <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>&copy; <span id="year"></span> Mahesh Dethe. Minimalist aesthetic inspired by darpanjain.com</span>
+      <a href="#" class="hover:underline">Back to top &uarr;</a>
     </div>
   </footer>
 
-  <div id="projectModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-[#0b0f19] border border-slate-800 w-full max-w-2xl rounded-2xl p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-      <button onclick="closeModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-lg bg-slate-900 border border-slate-800" aria-label="Close modal">
-        <i data-lucide="x" class="w-4 h-4"></i>
-      </button>
-
-      <div id="modalContent" class="space-y-4">
-        <!-- Injected via JavaScript -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Notification Toast -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 hidden px-4 py-2.5 rounded-xl bg-slate-900 border border-accent text-white font-mono text-xs shadow-xl items-center gap-2">
-    <i data-lucide="check-circle" class="w-4 h-4 text-accent"></i>
-    <span id="toastMsg">Copied to clipboard</span>
-  </div>
-
+  <!-- Script for Theme Toggle & Dynamic Year -->
   <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
+    // Set dynamic current year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Mobile Navigation Toggle
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (mobileBtn && mobileMenu) {
-      mobileBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-      // Close mobile menu on click
-      mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-      });
+    // Theme Toggle Logic
+    const toggleButton = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    // Default to dark or user preference
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlElement.classList.add('dark');
+    } else {
+      htmlElement.classList.remove('dark');
     }
 
-    // Theme Accent Switcher
-    function setAccent(color) {
-      document.body.classList.remove('accent-emerald', 'accent-violet', 'accent-amber');
-      if (color !== 'cyan') {
-        document.body.classList.add('accent-' + color);
-      }
-      showToast('Accent color updated to: ' + color.toUpperCase());
-    }
-
-    // 4-Step Methodology Stage Interactive Tab Data
-    const stageDetails = {
-      1: {
-        title: "Stage 01: Problem Definition & Constraints",
-        content: `
-          <div class="space-y-2">
-            <div class="text-accent font-bold">&gt; Hypothesis & Constraint Formulation</div>
-            <p class="text-slate-300">LLM generation in long-context tasks experiences quadratic memory explosion and memory bandwidth saturation during the autoregressive decode phase.</p>
-            <div class="bg-slate-950 p-3 rounded border border-slate-800 text-xs">
-              <span class="text-purple-400">Target metrics:</span> Maintain perplexity under 3.5 while shrinking KV-cache footprint by 65% across a 32k token context window on a single 24GB GPU.
-            </div>
-          </div>
-        `
-      },
-      2: {
-        title: "Stage 02: Deep Explanation & Mathematical Mechanics",
-        content: `
-          <div class="space-y-2">
-            <div class="text-accent font-bold">&gt; Attention Head Saliency & Mathematical Manifold</div>
-            <p class="text-slate-300">Multi-Head Attention stores keys $K \\in \\mathbb{R}^{B \\times H \\times L \\times d}$ and values $V$. Standard Grouped-Query Attention (GQA) groups key-value heads together.</p>
-            <div class="bg-slate-950 p-3 rounded border border-slate-800 text-xs space-y-1">
-              <div class="text-emerald-400">Attention Score Matrix: $A = \\text{softmax}\\left(\\frac{Q K^T}{\\sqrt{d_k}} + M\\right)$</div>
-              <div class="text-slate-400">Insight: Across late layers, >75% of token keys have negligible attention weights $A_{ij} < 1e-4$. Evicting them does not degrade semantic output.</div>
-            </div>
-          </div>
-        `
-      },
-      3: {
-        title: "Stage 03: Grounded Real-World Applications",
-        content: `
-          <div class="space-y-2">
-            <div class="text-accent font-bold">&gt; Production Impact & Enterprise Use Cases</div>
-            <p class="text-slate-300">Applied in clinical document comprehension engines and multi-turn financial auditing agents handling 500-page SEC filings.</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-              <div class="p-2.5 rounded bg-slate-950 border border-slate-800">
-                <span class="text-white font-bold block">Medical Diagnostics:</span>
-                <span class="text-slate-400 text-xs">Simultaneous ingestion of longitudinal patient records without out-of-memory crashes.</span>
-              </div>
-              <div class="p-2.5 rounded bg-slate-950 border border-slate-800">
-                <span class="text-white font-bold block">Autonomous Agent Loop:</span>
-                <span class="text-slate-400 text-xs">Enables persistent conversational context across 200+ continuous tool execution rounds.</span>
-              </div>
-            </div>
-          </div>
-        `
-      },
-      4: {
-        title: "Stage 04: Systematic Algorithmic Pipeline",
-        content: `
-          <div class="space-y-2">
-            <div class="text-accent font-bold">&gt; Triton Kernel Execution & Dynamic Pruning</div>
-            <p class="text-slate-300">Developed a sliding-window + top-k evicted KV-cache paging algorithm with ring-buffer memory allocations in Triton.</p>
-            <div class="bg-slate-950 p-3 rounded border border-slate-800 font-mono text-[12px] text-slate-300">
-              <span class="text-purple-400">def</span> <span class="text-yellow-300">prune_kv_cache</span>(keys, values, threshold=0.015):<br>
-              &nbsp;&nbsp;importance = torch.norm(keys, p=2, dim=-1)<br>
-              &nbsp;&nbsp;keep_idx = torch.topk(importance, k=int(keys.shape[2]*0.35)).indices<br>
-              &nbsp;&nbsp;<span class="text-purple-400">return</span> keys.gather(2, keep_idx), values.gather(2, keep_idx)
-            </div>
-          </div>
-        `
-      }
-    };
-
-    function showStageDetails(stageNumber) {
-      const container = document.getElementById('stageContent');
-      if (!container) return;
-      container.innerHTML = stageDetails[stageNumber].content;
-
-      // Update button active styles
-      for (let i = 1; i <= 4; i++) {
-        const btn = document.getElementById('stageBtn' + i);
-        if (btn) {
-          if (i === stageNumber) {
-            btn.className = 'stage-btn px-3 py-1.5 rounded-md bg-accent text-slate-950 font-semibold';
-          } else {
-            btn.className = 'stage-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-white';
-          }
-        }
-      }
-    }
-    // Initialize stage 1
-    showStageDetails(1);
-
-    // Filter Projects Category
-    function filterProjects(category) {
-      const cards = document.querySelectorAll('.project-card');
-      const buttons = document.querySelectorAll('.filter-btn');
-
-      buttons.forEach(btn => {
-        if (btn.getAttribute('data-cat') === category) {
-          btn.className = 'filter-btn px-3 py-1.5 rounded-lg border border-accent bg-accent text-slate-950 font-bold';
-        } else {
-          btn.className = 'filter-btn px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900 text-slate-400 hover:text-white';
-        }
-      });
-
-      cards.forEach(card => {
-        const cardCat = card.getAttribute('data-cat');
-        if (category === 'all' || cardCat === category) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    }
-
-    // Modal data and handler
-    const modalData = {
-      'sparse-decoding': {
-        title: "Speculative Sparse-Decoding Engine",
-        tags: ["PyTorch", "FlashAttention-2", "FP8 Quantization", "CUDA"],
-        summary: "Traditional autoregressive decoding is bounded by GPU memory bandwidth rather than compute capability. In this study, I combined lightweight speculative drafters with dynamically clustered KV states.",
-        details: [
-          "Implemented a custom Triton kernel for draft token verification in batched parallel threads.",
-          "Observed a 2.8x speedup on Llama-3 70B across single-node 8x A100 setups.",
-          "Preserved 99.8% GSM8K and HumanEval evaluation accuracy against standard greedy baselines."
-        ]
-      },
-      'sae-circuits': {
-        title: "Sparse Autoencoder Circuit Decomposition",
-        tags: ["SAE", "Mechanistic Interpretability", "JAX", "TransformerLens"],
-        summary: "Neural networks represent distinct abstract concepts as linear combinations in high-dimensional superposition. This research decomposes dense residual activations into human-interpretable features.",
-        details: [
-          "Trained a Top-K Sparse Autoencoder with 131,072 latent features on residual stream activations.",
-          "Identified clean safety circumvention monosemantic circuits and deactivated them directly without retraining the base LLM.",
-          "Co-authored technical paper draft documenting polysemanticity reduction metrics."
-        ]
-      },
-      'aerocode': {
-        title: "AeroCode: Self-Healing Autonomous Repo Agent",
-        tags: ["LangGraph", "Tree-sitter", "Docker", "FastAPI"],
-        summary: "An autonomous developer agent equipped with a self-correcting feedback loop designed to isolate regressions in large monorepos.",
-        details: [
-          "Parses syntax trees to localize fault paths directly to AST function nodes.",
-          "Executes containerized test suites inside isolated sandboxes to confirm bug reproduction.",
-          "Synthesizes minimum-change diffs, verifies regression pass rates, and pushes clean git commits."
-        ]
-      },
-      'spatial-grounder': {
-        title: "Zero-Shot Spatial Visual Grounder",
-        tags: ["Vision-Language", "OpenCLIP", "ONNX", "PyTorch"],
-        summary: "Multi-modal vision grounding pipeline integrating high-resolution vision backbones with cross-modal query projections for object localization in drone imagery.",
-        details: [
-          "Replaced dense bounding regression with language-guided heatmap peak detection.",
-          "Runs real-time at 48 FPS on edge Nvidia Jetson Orin devices.",
-          "Demonstrates zero-shot adaptation to rare obstacle classes."
-        ]
-      },
-      'tiny-reason': {
-        title: "TinyReason: Distilled MCTS Reasoner",
-        tags: ["MCTS", "Process Reward Models", "DPO", "Fine-Tuning"],
-        summary: "Distilling complex search-tree reasoning into lightweight 3-billion parameter models through step-by-step process supervision.",
-        details: [
-          "Generated synthetically verified reasoning trees using open-source frontier models.",
-          "Trained step-level verifier PRM to grade intermediate deduction steps.",
-          "Surpassed standard 7B models on mathematical problem solving benchmarks."
-        ]
-      },
-      'consensus': {
-        title: "Multi-Agent Consensus Engine",
-        tags: ["Multi-Agent", "AsyncIO", "Distributed Systems", "Redis"],
-        summary: "Decentralized consensus framework where distinct specialized LLM agents debate problem solutions under game-theoretic convergence rules.",
-        details: [
-          "Reduces hallucinations in legal and financial reasoning by 43%.",
-          "Includes automated Arbiter agent to detect circular or fallacious arguments.",
-          "Horizontally scalable via asynchronous pub/sub architecture."
-        ]
-      }
-    };
-
-    function openModal(id) {
-      const modal = document.getElementById('projectModal');
-      const content = document.getElementById('modalContent');
-      const data = modalData[id];
-
-      if (!modal || !content || !data) return;
-
-      content.innerHTML = `
-        <div class="flex items-center gap-2 mb-2">
-          <span class="text-xs font-mono px-2 py-0.5 rounded bg-accent/20 text-accent font-semibold">PROJECT ANALYSIS</span>
-        </div>
-        <h3 class="text-xl font-bold text-white">${data.title}</h3>
-        <div class="flex flex-wrap gap-1.5 py-1">
-          ${data.tags.map(t => `<span class="text-[11px] font-mono bg-slate-900 border border-slate-800 text-slate-300 px-2 py-0.5 rounded">${t}</span>`).join('')}
-        </div>
-        <p class="text-sm text-slate-300 leading-relaxed pt-2">${data.summary}</p>
-        <div class="bg-slate-900/90 border border-slate-800 p-4 rounded-xl space-y-2 mt-2">
-          <span class="text-xs font-mono text-accent block font-semibold">Key Empirical Findings:</span>
-          <ul class="space-y-1.5 text-xs text-slate-300 list-disc list-inside">
-            ${data.details.map(d => `<li>${d}</li>`).join('')}
-          </ul>
-        </div>
-        <div class="pt-4 flex items-center justify-end gap-3 font-mono text-xs">
-          <button onclick="closeModal()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300">Close</button>
-        </div>
-      `;
-
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('projectModal');
-      if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      }
-    }
-
-    // Terminal Playground Simulation Engine
-    const terminalCommands = {
-      'help': () => `
-        <div class="text-slate-400 space-y-1">
-          <div>Available commands:</div>
-          <div>  <span class="text-accent">help</span>                 - List available diagnostic commands</div>
-          <div>  <span class="text-accent">benchmark --fp8</span>      - Run quantization memory & latency test</div>
-          <div>  <span class="text-accent">inspect --lora</span>       - Inspect active rank-16 LoRA adapter layers</div>
-          <div>  <span class="text-accent">evaluate --agent</span>      - Run autonomous loop verification</div>
-          <div>  <span class="text-accent">skills</span>               - Display core research domains</div>
-          <div>  <span class="text-accent">contact</span>              - Print researcher communication channels</div>
-          <div>  <span class="text-accent">clear</span>                - Clear terminal stdout buffer</div>
-        </div>
-      `,
-      'benchmark --fp8': () => `
-        <div class="text-slate-300 space-y-1 bg-slate-950/80 p-2.5 rounded border border-slate-800">
-          <div class="text-emerald-400 font-bold">[FP8 GEMM Benchmark Routine]</div>
-          <div>Hardware: NVIDIA H100 SXM5 | Batch: 32 | SeqLen: 4096</div>
-          <div class="text-slate-400">FP16 Baseline: 4.82 ms/token (Memory: 28.4 GB VRAM)</div>
-          <div class="text-cyan-400">FP8 Quantized: 1.74 ms/token (Memory: 11.2 GB VRAM)</div>
-          <div class="text-emerald-400 font-bold">&gt;&gt; Performance Gain: 2.77x throughput speedup, 60.5% VRAM saved.</div>
-        </div>
-      `,
-      'inspect --lora': () => `
-        <div class="text-slate-300 space-y-1 bg-slate-950/80 p-2.5 rounded border border-slate-800">
-          <div class="text-purple-400 font-bold">[LoRA Weights Diagnostic]</div>
-          <div>Target Modules: q_proj, v_proj, k_proj, o_proj</div>
-          <div>Rank: r=16 | Alpha: 32 | Dropout: 0.05</div>
-          <div>Trainable Parameters: 14.8M / 7.2B (0.205% of model)</div>
-          <div class="text-emerald-400">Status: SVD Orthogonality verified. Drift score: 0.012 (Nominal).</div>
-        </div>
-      `,
-      'evaluate --agent': () => `
-        <div class="text-slate-300 space-y-1 bg-slate-950/80 p-2.5 rounded border border-slate-800">
-          <div class="text-yellow-400 font-bold">[Running Multi-Turn Agent Loop]</div>
-          <div>Step 1: Goal decomposition -&gt; 3 atomic subtasks. [OK]</div>
-          <div>Step 2: Tree-sitter code static analysis. [OK]</div>
-          <div>Step 3: Unit test validation suite. [Pass: 42/42]</div>
-          <div class="text-emerald-400 font-bold">Outcome: Consensus reached in 1.42s without human in the loop.</div>
-        </div>
-      `,
-      'skills': () => `
-        <div class="text-slate-300 space-y-1">
-          <div><span class="text-accent font-bold">Research Domains:</span> Transformers, Interpretability (SAEs), Agent Systems</div>
-          <div><span class="text-accent font-bold">Frameworks:</span> PyTorch, JAX, Triton, Transformers, LangGraph, vLLM</div>
-          <div><span class="text-accent font-bold">Infrastructure:</span> CUDA, Slurm, Docker, AWS EC2 (p4de/p5 instances), W&B</div>
-        </div>
-      `,
-      'contact': () => `
-        <div class="text-slate-300 space-y-1">
-          <div>Email: <span class="text-accent">alex@frontier-research.dev</span></div>
-          <div>GitHub: <span class="text-slate-400">github.com/alex-research</span></div>
-          <div>ArXiv: <span class="text-slate-400">arxiv.org/a/alex_research_1</span></div>
-        </div>
-      `,
-      'clear': () => 'CLEAR'
-    };
-
-    function runCommand(cmdText) {
-      const termBody = document.getElementById('terminalBody');
-      const input = document.getElementById('terminalInput');
-      if (!termBody) return;
-
-      const cleanCmd = cmdText.trim().toLowerCase();
-
-      if (cleanCmd === 'clear') {
-        termBody.innerHTML = `
-          <div class="text-slate-500">// Terminal cleared. Type 'help' for options.</div>
-        `;
-        return;
-      }
-
-      // Append user command
-      const cmdEcho = document.createElement('div');
-      cmdEcho.className = 'text-slate-400';
-      cmdEcho.innerHTML = `<span class="text-accent">guest@alex-research</span>:<span class="text-purple-400">~</span>$ <span class="text-white">${cmdText}</span>`;
-      termBody.appendChild(cmdEcho);
-
-      // Append output
-      const outputDiv = document.createElement('div');
-      if (terminalCommands[cleanCmd]) {
-        outputDiv.innerHTML = terminalCommands[cleanCmd]();
+    toggleButton.addEventListener('click', () => {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.theme = 'light';
       } else {
-        outputDiv.innerHTML = `<div class="text-red-400">command not found: "${cmdText}". Type <span class="text-accent font-bold">help</span> for a list of commands.</div>`;
+        htmlElement.classList.add('dark');
+        localStorage.theme = 'dark';
       }
-      termBody.appendChild(outputDiv);
-
-      // Scroll down
-      termBody.scrollTop = termBody.scrollHeight;
-      if (input) input.value = '';
-    }
-
-    function handleTerminalSubmit() {
-      const input = document.getElementById('terminalInput');
-      if (!input || !input.value.trim()) return;
-      runCommand(input.value);
-    }
-
-    // Bind Enter key in terminal input
-    const termInput = document.getElementById('terminalInput');
-    if (termInput) {
-      termInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          handleTerminalSubmit();
-        }
-      });
-    }
-
-    // Copy to clipboard helper using document.execCommand
-    function copyToClipboard(text) {
-      const tempInput = document.createElement('textarea');
-      tempInput.value = text;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      try {
-        document.execCommand('copy');
-        showToast(`Copied "${text}" to clipboard`);
-      } catch (err) {
-        showToast('Unable to copy automatically');
-      }
-      document.body.removeChild(tempInput);
-    }
-
-    // Toast Notification helper
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toastMsg');
-      if (!toast || !toastMsg) return;
-
-      toastMsg.innerText = message;
-      toast.classList.remove('hidden');
-      toast.classList.add('flex');
-
-      setTimeout(() => {
-        toast.classList.add('hidden');
-        toast.classList.remove('flex');
-      }, 3200);
-    }
-
-    // Contact Form Handler
-    function handleFormSubmit(event) {
-      event.preventDefault();
-      const name = document.getElementById('senderName').value;
-      const email = document.getElementById('senderEmail').value;
-      const topic = document.getElementById('senderTopic').value;
-      const note = document.getElementById('formNotification');
-
-      if (!note) return;
-
-      note.className = 'mt-4 p-3 rounded-lg text-xs font-mono border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 block';
-      note.innerHTML = `✓ Message packet encrypted and dispatched! Thank you <strong>${name}</strong> (${email}). I will respond via secure relay within 24 hours.`;
-      
-      document.getElementById('contactForm').reset();
-
-      setTimeout(() => {
-        note.classList.add('hidden');
-      }, 6000);
-    }
-
-    // Close modal on escape key or backdrop click
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
     });
-    const projectModal = document.getElementById('projectModal');
-    if (projectModal) {
-      projectModal.addEventListener('click', (e) => {
-        if (e.target === projectModal) closeModal();
-      });
-    }
   </script>
 </body>
 </html>
